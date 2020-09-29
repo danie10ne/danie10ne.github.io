@@ -314,13 +314,24 @@
         <div class="brand">
             <div class="title center-align">
                 
-                    subtitle
+                ‘’
                 
             </div>
 
             <div class="description center-align">
                 
-                    Stay Hungry Stay Foolish
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['Stay Hungry Stay Foolish','功成不息，坚守痴心'],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
                 
             </div>
         </div>
