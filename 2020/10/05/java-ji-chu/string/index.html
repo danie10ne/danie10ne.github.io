@@ -508,6 +508,8 @@
    <span class="token keyword">return</span> <span class="token punctuation">(</span>obj <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"null"</span> <span class="token operator">:</span> obj<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <p>从上面源码可以看出，可以不用担心Object为null，但使用的时候也要小心，<strong>当Object为null时，它的返回值是“null”，而不是null</strong>，这是有区别的。</p>
+<h2 id="String有长度限制吗？"><a href="#String有长度限制吗？" class="headerlink" title="String有长度限制吗？"></a>String有长度限制吗？</h2><p>字符串有长度限制，在编译期，要求字符串常量池中的常量不能超过65535，并且在javac执行过程中控制了最大值为65534。</p>
+<p>在运行期，长度不能超过Int的范围，否则会抛异常。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

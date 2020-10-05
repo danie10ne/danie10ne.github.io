@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="剑指offer11-旋转数组的最小数字, Danielone">
+    <meta name="keywords" content="Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>剑指offer11-旋转数组的最小数字 | Danielone</title>
+    <title>Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/56.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">剑指offer11-旋转数组的最小数字</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -386,23 +386,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                                <span class="chip bg-color">剑指offer</span>
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -411,7 +402,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-05
+                    2020-10-01
                 </div>
                 
 
@@ -427,40 +418,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="剑指offer11-旋转数组的最小数字Find-Minimum-in-Rotated-Sorted-Array-II"><a href="#剑指offer11-旋转数组的最小数字Find-Minimum-in-Rotated-Sorted-Array-II" class="headerlink" title="剑指offer11-旋转数组的最小数字Find Minimum in Rotated Sorted Array II"></a>剑指offer11-旋转数组的最小数字<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/">Find Minimum in Rotated Sorted Array II</a></h1><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).</p>
-<p>Find the minimum element.</p>
-<p>The array may contain duplicates.</p>
-<pre><code>Example 1:
-
-Input: [1,3,5]
-Output: 1
-
-Example 2:
-
-Input: [2,2,2,0,1]
-Output: 0</code></pre>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">findMin</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> right <span class="token operator">=</span> nums<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">int</span> mid <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token punctuation">(</span>right <span class="token operator">-</span> left<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                right <span class="token operator">=</span> mid<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> nums<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-                right<span class="token operator">--</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> nums<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="Thought"><a href="#Thought" class="headerlink" title="Thought"></a>Thought</h2><ul>
-<li>二叉树的最大高度，是由其左子树最大高度和右子树的最大高度中取最大值 + 根节点高度 1 计算出来的</li>
-<li>时间复杂度：*<em>O(n)**</em>，空间复杂度：<strong>O(1)</strong></li>
-</ul>
-<script>
+                <h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -503,7 +461,7 @@ Output: 0</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/er-fen/jian-zhi-offer11-xuan-zhuan-shu-zu-de-zui-xiao-shu-zi/">https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/er-fen/jian-zhi-offer11-xuan-zhuan-shu-zu-de-zui-xiao-shu-zi/</a>
+                    <a href="https://danie10ne.github.io/2020/10/01/java-ji-chu/java-zhong-de-guan-jian-zi/">https://danie10ne.github.io/2020/10/01/java-ji-chu/java-zhong-de-guan-jian-zi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -541,8 +499,8 @@ Output: 0</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                                    <span class="chip bg-color">剑指offer</span>
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
                                 </a>
                             
                         </div>
@@ -588,32 +546,31 @@ Output: 0</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/05/java-ji-chu/java-ji-he-lei/">
+                <a href="/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/41.jpg" class="responsive-img" alt="Java集合类">
+                        <img src="/medias/featureimages/56.jpg" class="responsive-img" alt="数据库事务">
                         
-                        <span class="card-title">Java集合类</span>
+                        <span class="card-title">数据库事务</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java集合类1. Collection 和 Collections 区别Collection是集合的接口，提供了多个通用的接口方法，供诸如list、set等实现。
-Collections是一个包装类，其内部的方法都为静态方法，因此不能被实
+                            数据库事务
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-01
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
                                 </a>
                             
                             
@@ -623,8 +580,8 @@ Collections是一个包装类，其内部的方法都为静态方法，因此不
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Java基础</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                 </div>
@@ -638,35 +595,32 @@ Collections是一个包装类，其内部的方法都为静态方法，因此不
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/bubblesort/">
+                <a href="/2020/10/01/java-ji-chu/template/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/94.jpg" class="responsive-img" alt="冒泡排序">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">冒泡排序</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            冒泡排序1. 什么是冒泡排序？冒泡算法顾名思义就是重复地遍历数组中的元素，每次比较两个元素，如果顺序错误就交换位置，接着再比较下一对相邻元素直到最后一个元素确定为最值，接着再重新遍历比较除了有序元素的数组元素。
-
-从数组末尾位置开始确定排好
+                            标题
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { retu
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-01
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Daniel
                             
                         </span>
                     </div>
@@ -674,8 +628,8 @@ Collections是一个包装类，其内部的方法都为静态方法，因此不
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">排序</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                 </div>
