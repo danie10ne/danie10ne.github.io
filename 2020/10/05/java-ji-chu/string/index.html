@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="冒泡排序, Danielone">
+    <meta name="keywords" content="String, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>冒泡排序 | Danielone</title>
+    <title>String | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/94.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/57.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">冒泡排序</h1>
+                    <h1 class="description center-align post-title">String</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                                <span class="chip bg-color">排序</span>
+                            <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">Java基础</span>
                             </a>
                         
                     </div>
@@ -398,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -427,44 +427,87 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><h2 id="1-什么是冒泡排序？"><a href="#1-什么是冒泡排序？" class="headerlink" title="1. 什么是冒泡排序？"></a>1. 什么是冒泡排序？</h2><p>冒泡算法顾名思义就是重复地遍历数组中的元素，每次比较两个元素，如果顺序错误就交换位置，接着再比较下一对相邻元素直到最后一个元素确定为最值，接着再重新遍历比较除了有序元素的数组元素。</p>
-<ul>
-<li><strong>从数组末尾位置开始确定排好序的元素，一般为升序，即每次确定最大值放在末位。</strong></li>
-<li>关注点是最大值</li>
-</ul>
-<h2 id="2-代码思路"><a href="#2-代码思路" class="headerlink" title="2. 代码思路"></a>2. 代码思路</h2><ol>
-<li>鲁棒性检查，如果数组为空或者长度小于2直接返回</li>
-<li>因为是从最末位位置开始确定元素，所以从<strong>“末位-&gt;0”</strong>先固定n-1、n-2、n-3、…0位置的元素，固定好后末位依次减1</li>
-<li>在<strong>“末位-0”</strong>范围内，从0位置开始遍历数组并比较相邻的元素。如果第一个比第二个大（升序），就交换他们两个</li>
-</ol>
-<h2 id="3-时间复杂度-amp-空间复杂度"><a href="#3-时间复杂度-amp-空间复杂度" class="headerlink" title="3. 时间复杂度 &amp; 空间复杂度"></a>3. 时间复杂度 &amp; 空间复杂度</h2><ul>
-<li>最坏时间复杂度：O(N^2)</li>
-<li>最优时间复杂度：O(N)</li>
-<li>平均时间复杂度：O(N^2)</li>
-<li>最坏空间复杂度：总共O(N)，额外空间复杂度O(1)</li>
-</ul>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BubbleSort</span> <span class="token punctuation">{</span>
-        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//鲁棒性判断</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>arr <span class="token operator">==</span> null <span class="token operator">||</span> arr<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> end <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> end <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span> end<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> end<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                    <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                        <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> i<span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+                <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><h2 id="1-字符串为什么不可变"><a href="#1-字符串为什么不可变" class="headerlink" title="1. 字符串为什么不可变"></a>1. 字符串为什么不可变</h2><p>因为String被定义为final，初始化定义String的数组不能再引用其他数组，并且String内部没有改变数组中元素的方法，因此String是不可变的。</p>
+<p><strong>java8对Stirng的定义：</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">String</span> <span class="token keyword">implements</span> <span class="token class-name">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable</span><span class="token punctuation">,</span> Comparable<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">,</span> CharSequence <span class="token punctuation">{</span> 
+        <span class="token comment" spellcheck="true">/** The value is used for character storage. */</span> 
+        <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">char</span> value<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
 <span class="token punctuation">}</span></code></pre>
+<p><strong>java9对Stirng的定义：</strong>String 类的实现改用 byte 数组存储字符串，同时使用coder来标识编码类型</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">String</span> <span class="token keyword">implements</span> <span class="token class-name">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable</span><span class="token punctuation">,</span> Comparable<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">,</span> CharSequence <span class="token punctuation">{</span> 
+  <span class="token comment" spellcheck="true">/** The value is used for character storage. */</span> 
+  <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> value<span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/** The identifier of the encoding used to encode the bytes in {@code value}. */</span> 
+  <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">byte</span> coder<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li><p><strong>缓存hash值</strong>：String用作hashmap的key，不可变的特性可以使同样的key的hash值保持不变，使得hashmap只需要一次计算即可得到对应的k-v。</p>
+</li>
+<li><p><strong>满足字符串常量池的需要</strong>：如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可使用 String Pool。</p>
+</li>
+<li><p><strong>安全性</strong>：String 作为参数，String 不可变性可以保证参数不可变。比如在网络连接中，如果同一个的连接中，如果String参数是可变的，那么会误认为连接方发生了改变。</p>
+</li>
+<li><p><strong>线程安全</strong>：因为String 中的对象是不可变的，也就可以理解为常量，所以线程安全。</p>
+</li>
+</ul>
+<h2 id="2-String-和-StringBuﬀer、StringBuilder-的区别是什么？"><a href="#2-String-和-StringBuﬀer、StringBuilder-的区别是什么？" class="headerlink" title="2. String 和 StringBuﬀer、StringBuilder 的区别是什么？"></a>2. String 和 StringBuﬀer、StringBuilder 的区别是什么？</h2><p>StringBuilder 与 StringBuﬀer 都继承自 AbstractStringBuilder 类，在 AbstractStringBuilder 中也是使用字符数组保存字符串 char[]value 但是没有用 ﬁnal 关键字修饰，StringBuilder 与 StringBuﬀer 的构造方法都是调用父类构造方法也就是 AbstractStringBuilder 实现的，所以这两种对象都是可变的。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractStringBuilder</span> <span class="token keyword">implements</span> <span class="token class-name">Appendable</span><span class="token punctuation">,</span> CharSequence <span class="token punctuation">{</span> 
+      <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> value<span class="token punctuation">;</span> 
+      <span class="token keyword">int</span> count<span class="token punctuation">;</span> 
+      <span class="token function">AbstractStringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span> 
+      <span class="token function">AbstractStringBuilder</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            value <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">char</span><span class="token punctuation">[</span>capacity<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>线程安全：</strong></p>
+<ul>
+<li>StringBuﬀer 对方法加了同步锁或者对调用的方法加了同步锁，所以是线程安全的。</li>
+<li>StringBuilder 并没有对方法加同步锁，所以是非线程安全的。</li>
+<li>String可以理解为常量，所以线程安全。</li>
+</ul>
+<p><strong>三者使用的总结：**</strong></p>
+<ol>
+<li><p>操作少量的数据 = String</p>
+</li>
+<li><p>单线程操作字符串缓冲区下操作大量数据 = StringBuilder</p>
+</li>
+<li><p>多线程操作字符串缓冲区下操作大量数据 = StringBuﬀer</p>
+</li>
+</ol>
+<h1 id="3-String-ValueOf和toString区别"><a href="#3-String-ValueOf和toString区别" class="headerlink" title="3. String.ValueOf和toString区别"></a>3. String.ValueOf和toString区别</h1><p>将对象转换成String类型常用的有如下三种方式：</p>
+<ul>
+<li>(String)[对象]</li>
+<li>[对象].toString</li>
+<li>String.valueOf([对象])</li>
+</ul>
+<p><strong>(String)</strong></p>
+<p>这是标准的类型转换，将对象强制转换为String类型，前提是<strong>该对象必须能保证转成String类型</strong>，否则将抛出ClassCastException异常。</p>
+<p><strong>toString</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+* This object (which is already a string!) is itself returned.
+*
+* @return  the string itself.
+*/</span>
+<span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token number">12345678</span></code></pre>
+<p>此方法返回对象本身，在java.lang.Object类中也有toString()方法，所以Java对象都可以调用此方法，但使用的时候<strong>必须保证要转换的对象不为null</strong>，否则将抛出NullPointerException异常。</p>
+<p><strong>String.valueOf()</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+* Returns the string representation of the &lt;code>Object&lt;/code> argument.
+*
+* @param   obj   an &lt;code>Object&lt;/code>.
+* @return  if the argument is &lt;code>null&lt;/code>, then a string equal to
+*          &lt;code>"null"&lt;/code>; otherwise, the value of
+*          &lt;code>obj.toString()&lt;/code> is returned.
+* @see     java.lang.Object#toString()
+*/</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">valueOf</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token punctuation">(</span>obj <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"null"</span> <span class="token operator">:</span> obj<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>从上面源码可以看出，可以不用担心Object为null，但使用的时候也要小心，<strong>当Object为null时，它的返回值是“null”，而不是null</strong>，这是有区别的。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -508,7 +551,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/bubblesort/">https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/bubblesort/</a>
+                    <a href="https://danie10ne.github.io/2020/10/05/java-ji-chu/string/">https://danie10ne.github.io/2020/10/05/java-ji-chu/string/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -546,8 +589,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                                    <span class="chip bg-color">排序</span>
+                                <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">Java基础</span>
                                 </a>
                             
                         </div>
@@ -593,19 +636,21 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/er-fen/jian-zhi-offer11-xuan-zhuan-shu-zu-de-zui-xiao-shu-zi/">
+                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/bubblesort/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/56.jpg" class="responsive-img" alt="剑指offer11-旋转数组的最小数字">
+                        <img src="/medias/featureimages/94.jpg" class="responsive-img" alt="冒泡排序">
                         
-                        <span class="card-title">剑指offer11-旋转数组的最小数字</span>
+                        <span class="card-title">冒泡排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            剑指offer11-旋转数组的最小数字Find Minimum in Rotated Sorted Array IISuppose an array sorted in ascending order is rotated at some 
+                            冒泡排序1. 什么是冒泡排序？冒泡算法顾名思义就是重复地遍历数组中的元素，每次比较两个元素，如果顺序错误就交换位置，接着再比较下一对相邻元素直到最后一个元素确定为最值，接着再重新遍历比较除了有序元素的数组元素。
+
+从数组末尾位置开始确定排好
                         
                     </div>
                     <div class="publish-info">
@@ -627,8 +672,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                        <span class="chip bg-color">剑指offer</span>
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">排序</span>
                     </a>
                     
                 </div>
@@ -642,21 +687,21 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/05/java-ji-chu/string/">
+                <a href="/2020/10/05/java-ji-chu/zi-dong-chai-zhuang-xiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/57.jpg" class="responsive-img" alt="String">
+                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="自动拆装箱">
                         
-                        <span class="card-title">String</span>
+                        <span class="card-title">自动拆装箱</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            String1. 字符串为什么不可变因为String被定义为final，初始化定义String的数组不能再引用其他数组，并且String内部没有改变数组中元素的方法，因此String是不可变的。
-java8对Stirng的定义：
-publi
+                            自动拆装箱什么是包装类型和基本类型，以及自动拆装箱基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱完成。
+
+装箱：自动装箱就是Java自动将原始基本类型值转换成对应的对象，比如将int的变量转换成Integ
                         
                     </div>
                     <div class="publish-info">
