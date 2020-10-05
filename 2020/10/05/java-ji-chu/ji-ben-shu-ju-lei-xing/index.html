@@ -427,7 +427,26 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h2 id="8-种基本数据类型：整型、浮点型、布尔型、字符型"><a href="#8-种基本数据类型：整型、浮点型、布尔型、字符型" class="headerlink" title="8 种基本数据类型：整型、浮点型、布尔型、字符型"></a>8 种基本数据类型：整型、浮点型、布尔型、字符型</h2><h2 id="整型中-byte、short、int、long-的取值范围"><a href="#整型中-byte、short、int、long-的取值范围" class="headerlink" title="整型中 byte、short、int、long 的取值范围"></a>整型中 byte、short、int、long 的取值范围</h2><h2 id="什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？"><a href="#什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？" class="headerlink" title="什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？"></a>什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？</h2><script>
+                <h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h2 id="8-种基本数据类型：整型、浮点型、布尔型、字符型"><a href="#8-种基本数据类型：整型、浮点型、布尔型、字符型" class="headerlink" title="8 种基本数据类型：整型、浮点型、布尔型、字符型"></a>8 种基本数据类型：整型、浮点型、布尔型、字符型</h2><ul>
+<li>byte/8bit </li>
+<li>char/16bit  </li>
+<li>short/16bit  </li>
+<li>int/32bit  </li>
+<li>ﬂoat/32bit  </li>
+<li>long/64bit  </li>
+<li>double/64bit  </li>
+<li>boolean/~</li>
+</ul>
+<p>boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boolean 类型的数据转换为 int，使用 1 来表示 true，0 表示 false。</p>
+<h2 id="什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？"><a href="#什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？" class="headerlink" title="什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？"></a>什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？</h2><p>浮点型简单来说就是表示带有小数的数据</p>
+<p>单精度<code>float</code>、双精度<code>double</code></p>
+<ul>
+<li>单精度浮点数在机内占<code>4</code>个字节、有效数字<code>8</code>位、表示范围：<code>-3.40E+38 ~ +3.40E+38</code></li>
+<li>双精度浮点数在机内占<code>8</code>个字节、有效数字<code>16</code>位、表示范围：<code>-1.79E+308 ~ +1.79E+308</code></li>
+</ul>
+<p>Java默认把小数当做<code>double</code>类型来处理，要想该字面值当做<code>float</code>类型来处理，需要在字面值后面添加<code>F/f</code>,或者强制装换为<code>float</code></p>
+<p>财务涉及到钱的问题，要求精度较高，所以在java中有一个基础的类库名为：<code>java.math.BigDecimal</code>，但这个<code>BigDecimal</code>类型是<strong>引用类型</strong>不是基础类型</p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -555,21 +574,22 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/bubblesort/">
+                <a href="/2020/10/05/java-ji-chu/zi-dong-chai-zhuang-xiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/94.jpg" class="responsive-img" alt="冒泡排序">
+                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="自动拆装箱">
                         
-                        <span class="card-title">冒泡排序</span>
+                        <span class="card-title">自动拆装箱</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            冒泡排序1. 什么是冒泡排序？冒泡算法顾名思义就是重复地遍历数组中的元素，每次比较两个元素，如果顺序错误就交换位置，接着再比较下一对相邻元素直到最后一个元素确定为最值，接着再重新遍历比较除了有序元素的数组元素。
-
-从数组末尾位置开始确定排好
+                            自动拆装箱什么是包装类型什么是基本类型什么是自动拆装箱Integer 的缓存机制
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+ 
                         
                     </div>
                     <div class="publish-info">
@@ -580,8 +600,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -591,8 +611,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">排序</span>
+                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">Java基础</span>
                     </a>
                     
                 </div>

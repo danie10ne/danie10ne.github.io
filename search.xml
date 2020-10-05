@@ -54,11 +54,36 @@
     
     
     <entry>
+      <title>自动拆装箱</title>
+      <link href="2020/10/05/java-ji-chu/zi-dong-chai-zhuang-xiang/"/>
+      <url>2020/10/05/java-ji-chu/zi-dong-chai-zhuang-xiang/</url>
+      
+        <content type="html"><![CDATA[<h1 id="自动拆装箱"><a href="#自动拆装箱" class="headerlink" title="自动拆装箱"></a>自动拆装箱</h1><h2 id="什么是包装类型"><a href="#什么是包装类型" class="headerlink" title="什么是包装类型"></a>什么是包装类型</h2><h2 id="什么是基本类型"><a href="#什么是基本类型" class="headerlink" title="什么是基本类型"></a>什么是基本类型</h2><h2 id="什么是自动拆装箱"><a href="#什么是自动拆装箱" class="headerlink" title="什么是自动拆装箱"></a>什么是自动拆装箱</h2><h2 id="Integer-的缓存机制"><a href="#Integer-的缓存机制" class="headerlink" title="Integer 的缓存机制"></a>Integer 的缓存机制</h2><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基本数据类型</title>
       <link href="2020/10/05/java-ji-chu/ji-ben-shu-ju-lei-xing/"/>
       <url>2020/10/05/java-ji-chu/ji-ben-shu-ju-lei-xing/</url>
       
-        <content type="html"><![CDATA[<h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h2 id="8-种基本数据类型：整型、浮点型、布尔型、字符型"><a href="#8-种基本数据类型：整型、浮点型、布尔型、字符型" class="headerlink" title="8 种基本数据类型：整型、浮点型、布尔型、字符型"></a>8 种基本数据类型：整型、浮点型、布尔型、字符型</h2><h2 id="整型中-byte、short、int、long-的取值范围"><a href="#整型中-byte、short、int、long-的取值范围" class="headerlink" title="整型中 byte、short、int、long 的取值范围"></a>整型中 byte、short、int、long 的取值范围</h2><h2 id="什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？"><a href="#什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？" class="headerlink" title="什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？"></a>什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？</h2><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h2 id="8-种基本数据类型：整型、浮点型、布尔型、字符型"><a href="#8-种基本数据类型：整型、浮点型、布尔型、字符型" class="headerlink" title="8 种基本数据类型：整型、浮点型、布尔型、字符型"></a>8 种基本数据类型：整型、浮点型、布尔型、字符型</h2><ul><li>byte/8bit </li><li>char/16bit  </li><li>short/16bit  </li><li>int/32bit  </li><li>ﬂoat/32bit  </li><li>long/64bit  </li><li>double/64bit  </li><li>boolean/~</li></ul><p>boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boolean 类型的数据转换为 int，使用 1 来表示 true，0 表示 false。</p><h2 id="什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？"><a href="#什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？" class="headerlink" title="什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？"></a>什么是浮点型？什么是单精度和双精度？为什么不能用浮点型表示金额？</h2><p>浮点型简单来说就是表示带有小数的数据</p><p>单精度<code>float</code>、双精度<code>double</code></p><ul><li>单精度浮点数在机内占<code>4</code>个字节、有效数字<code>8</code>位、表示范围：<code>-3.40E+38 ~ +3.40E+38</code></li><li>双精度浮点数在机内占<code>8</code>个字节、有效数字<code>16</code>位、表示范围：<code>-1.79E+308 ~ +1.79E+308</code></li></ul><p>Java默认把小数当做<code>double</code>类型来处理，要想该字面值当做<code>float</code>类型来处理，需要在字面值后面添加<code>F/f</code>,或者强制装换为<code>float</code></p><p>财务涉及到钱的问题，要求精度较高，所以在java中有一个基础的类库名为：<code>java.math.BigDecimal</code>，但这个<code>BigDecimal</code>类型是<strong>引用类型</strong>不是基础类型</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>
