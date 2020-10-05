@@ -427,7 +427,25 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="自动拆装箱"><a href="#自动拆装箱" class="headerlink" title="自动拆装箱"></a>自动拆装箱</h1><h2 id="什么是包装类型"><a href="#什么是包装类型" class="headerlink" title="什么是包装类型"></a>什么是包装类型</h2><h2 id="什么是基本类型"><a href="#什么是基本类型" class="headerlink" title="什么是基本类型"></a>什么是基本类型</h2><h2 id="什么是自动拆装箱"><a href="#什么是自动拆装箱" class="headerlink" title="什么是自动拆装箱"></a>什么是自动拆装箱</h2><h2 id="Integer-的缓存机制"><a href="#Integer-的缓存机制" class="headerlink" title="Integer 的缓存机制"></a>Integer 的缓存机制</h2><script>
+                <h1 id="自动拆装箱"><a href="#自动拆装箱" class="headerlink" title="自动拆装箱"></a>自动拆装箱</h1><h2 id="什么是包装类型和基本类型，以及自动拆装箱"><a href="#什么是包装类型和基本类型，以及自动拆装箱" class="headerlink" title="什么是包装类型和基本类型，以及自动拆装箱"></a>什么是包装类型和基本类型，以及自动拆装箱</h2><p>基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱完成。</p>
+<ul>
+<li>装箱：自动装箱就是Java自动将原始基本类型值转换成对应的对象，比如将int的变量转换成Integer对象，编译器通过调用valueOf将原始类型值转换成对象</li>
+<li>拆箱：反之将对象转换成基本类型值，比如Integer对象转换成int类型值，编译器通过调用类似intValue()，doubleValue()这类的方法将对象转换成原始类型值</li>
+<li>自动装箱是将boolean值转换成Boolean对象，byte值转换成Byte对象，char转换成Character对象，float值转换成Float对象，int转换成Integer，long转换成Long，short转换成Short，自动拆箱则是相反的操作</li>
+</ul>
+<pre class=" language-java"><code class="language-java">Integer x <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//装箱</span>
+<span class="token keyword">int</span> y <span class="token operator">=</span> x<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//拆箱</span></code></pre>
+<h2 id="Integer-的缓存机制"><a href="#Integer-的缓存机制" class="headerlink" title="Integer 的缓存机制"></a>Integer 的缓存机制</h2><p>在调用Integer.valueOf()方法时，Integer封装类型会先判断方法想要的值是否在缓存池中，如果在的话就直接返回缓存池的内容，不在的话就创建一个新的Integer对象。</p>
+<p><strong>在 Java 8 中，Integer 缓存池的大小默认为 -128~127</strong>，上界可通过jvm参数进行调整</p>
+<p>基本类型对应的缓冲池如下：</p>
+<ul>
+<li>boolean values true and false </li>
+<li>all byte values </li>
+<li>short values between -128 and 127 </li>
+<li>int values between -128 and 127 </li>
+<li>char in the range \u0000 to \u007F 在使用这些基本类型对应的包装类型时，如果该数值范围在缓冲池范围内，就可以直接使用缓冲池中的对象。</li>
+</ul>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
