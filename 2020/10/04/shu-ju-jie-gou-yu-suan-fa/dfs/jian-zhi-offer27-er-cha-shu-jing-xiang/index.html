@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数据库事务, Danielone">
+    <meta name="keywords" content="剑指offer27-二叉树镜像, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据库事务 | Danielone</title>
+    <title>剑指offer27-二叉树镜像 | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/56.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/71.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据库事务</h1>
+                    <h1 class="description center-align post-title">剑指offer27-二叉树镜像</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">数据库</span>
+                            <a href="/tags/%E5%89%91%E6%8C%87offer/">
+                                <span class="chip bg-color">剑指offer</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
                             </a>
                         
                     </div>
@@ -398,8 +402,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -411,7 +415,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-01
+                    2020-10-04
                 </div>
                 
 
@@ -427,7 +431,43 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h1><script>
+                <h1 id="剑指offer27-二叉树镜像-Invert-Binary-Tree"><a href="#剑指offer27-二叉树镜像-Invert-Binary-Tree" class="headerlink" title="剑指offer27-二叉树镜像 Invert Binary Tree"></a>剑指offer27-二叉树镜像<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/invert-binary-tree/"> Invert Binary Tree</a></h1><p>Invert a binary tree.</p>
+<p>Example:</p>
+<p>Input:</p>
+<pre><code>     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9</code></pre>
+<p>Output:</p>
+<pre><code>     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1</code></pre>
+<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><p>此题并没有要求在原来二叉树的基础上调整二叉树为镜像，也就是说对空间复杂度没有限制，因此可以通过创建节点，根据深度优先策略来创建此二叉树的镜像。时间复杂度可以达到O(n)，但是空间复杂度是以O(n)为代价的。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> TreeNode <span class="token function">invertTree</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        TreeNode res <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+          <span class="token comment" spellcheck="true">//深度优先策略，通过递归的方式遍历二叉树的节点</span>
+            res <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeNode</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            res<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            res<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -470,7 +510,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">https://danie10ne.github.io/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/</a>
+                    <a href="https://danie10ne.github.io/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer27-er-cha-shu-jing-xiang/">https://danie10ne.github.io/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer27-er-cha-shu-jing-xiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -508,8 +548,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">数据库</span>
+                                <a href="/tags/%E5%89%91%E6%8C%87offer/">
+                                    <span class="chip bg-color">剑指offer</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
                         </div>
@@ -555,26 +599,23 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer27-er-cha-shu-jing-xiang/">
+                <a href="/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer54-er-cha-sou-suo-shu-de-di-k-da-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/71.jpg" class="responsive-img" alt="剑指offer27-二叉树镜像">
+                        <img src="/medias/featureimages/40.jpg" class="responsive-img" alt="剑指offer54-二叉搜索树的第k大值">
                         
-                        <span class="card-title">剑指offer27-二叉树镜像</span>
+                        <span class="card-title">剑指offer54-二叉搜索树的第k大值</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            剑指offer27-二叉树镜像 Invert Binary TreeInvert a binary tree.
-Example:
-Input:
-     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
+                            剑指offer54-二叉搜索树的第k大值给定一棵二叉搜索树，请找出其中第k大的节点。
+Code/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *  
                         
                     </div>
                     <div class="publish-info">
@@ -583,12 +624,8 @@ Input:
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Daniel
                             
                         </span>
                     </div>
@@ -596,12 +633,8 @@ Input:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                        <span class="chip bg-color">剑指offer</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                 </div>
@@ -612,7 +645,7 @@ Input:
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">
@@ -646,7 +679,6 @@ Input:
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

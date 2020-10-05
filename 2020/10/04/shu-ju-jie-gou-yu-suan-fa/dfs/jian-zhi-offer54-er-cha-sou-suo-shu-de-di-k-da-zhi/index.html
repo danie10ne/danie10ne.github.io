@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数据库事务, Danielone">
+    <meta name="keywords" content="剑指offer54-二叉搜索树的第k大值, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据库事务 | Danielone</title>
+    <title>剑指offer54-二叉搜索树的第k大值 | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/56.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/40.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据库事务</h1>
+                    <h1 class="description center-align post-title">剑指offer54-二叉搜索树的第k大值</h1>
                 </div>
             </div>
         </div>
@@ -395,15 +395,6 @@
                 </div>
                 <div class="col s5 right-align">
                     
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
-                            </a>
-                        
-                    </div>
-                    
                 </div>
             </div>
 
@@ -411,7 +402,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-01
+                    2020-10-04
                 </div>
                 
 
@@ -427,7 +418,51 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h1><script>
+                <h1 id="剑指offer54-二叉搜索树的第k大值"><a href="#剑指offer54-二叉搜索树的第k大值" class="headerlink" title="剑指offer54-二叉搜索树的第k大值"></a>剑指offer54-二叉搜索树的第k大值</h1><p>给定一棵二叉搜索树，请找出其中第k大的节点。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//定义全局变量以便返回结果</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> res<span class="token punctuation">,</span> countk<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">kthLargest</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        countk <span class="token operator">=</span> k<span class="token punctuation">;</span>
+        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">//按“右中左”遍历二叉搜索树，遍历到第k个点即为第k大的点</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span>TreeNode node<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>node <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+        <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>countk <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        countk<span class="token operator">--</span><span class="token punctuation">;</span>
+        res <span class="token operator">=</span> node<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
+        <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="Thought"><a href="#Thought" class="headerlink" title="Thought"></a>Thought</h2><ul>
+<li>首先明确二叉搜索树的特征<ul>
+<li>若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值；</li>
+<li>若任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值；</li>
+<li>任意节点的左、右子树也分别为二叉查找树；</li>
+<li><strong>没有键值相等的节点</strong></li>
+</ul>
+</li>
+<li>二叉搜索树的节点按<strong>中序遍历</strong>（左中右）正好可以构成递增节点序列</li>
+<li>题目要找到第 k 大的节点，所以需要数字降序排列，则将中序遍历按照右、中、左遍历即可，遍历的同时找到第 k 个遍历到的值</li>
+</ul>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -470,7 +505,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">https://danie10ne.github.io/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/</a>
+                    <a href="https://danie10ne.github.io/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer54-er-cha-sou-suo-shu-de-di-k-da-zhi/">https://danie10ne.github.io/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer54-er-cha-sou-suo-shu-de-di-k-da-zhi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -555,6 +590,52 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer55-er-cha-shu-de-shen-du/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/94.jpg" class="responsive-img" alt="剑指offer55-二叉树的深度">
+                        
+                        <span class="card-title">剑指offer55-二叉树的深度</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            剑指offer55-二叉树的深度Maximum Depth of Binary TreeGiven a binary tree, find its maximum depth.
+The maximum depth is the number
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Daniel
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer27-er-cha-shu-jing-xiang/">
                     <div class="card-image">
                         
@@ -578,9 +659,9 @@ Input:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -602,56 +683,6 @@ Input:
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95/">
                         <span class="chip bg-color">算法</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/56.jpg" class="responsive-img" alt="数据库事务">
-                        
-                        <span class="card-title">数据库事务</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            数据库事务
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-01
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                    数据库
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                 </div>

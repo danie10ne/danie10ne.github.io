@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数据库事务, Danielone">
+    <meta name="keywords" content="堆排序, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据库事务 | Danielone</title>
+    <title>堆排序 | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/56.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/33.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据库事务</h1>
+                    <h1 class="description center-align post-title">堆排序</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">数据库</span>
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                                <span class="chip bg-color">排序</span>
                             </a>
                         
                     </div>
@@ -398,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -411,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-01
+                    2020-10-05
                 </div>
                 
 
@@ -427,7 +427,75 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h1><script>
+                <h2 id="什么是堆排序？"><a href="#什么是堆排序？" class="headerlink" title="什么是堆排序？"></a>什么是堆排序？</h2><ol>
+<li><strong>heapinsert:</strong> 先把数组变成大根堆或者小根堆</li>
+<li>把堆顶的元素放到数组最末位，并且固定，即不再扫描，size–</li>
+<li><strong>heapify：</strong>维护当前堆大小范围内的为小根堆或者大根堆</li>
+<li>循环2、3步，直到size为0</li>
+</ol>
+<h4 id="heapinsert（产生大根堆或者小根堆）"><a href="#heapinsert（产生大根堆或者小根堆）" class="headerlink" title="heapinsert（产生大根堆或者小根堆）"></a>heapinsert（产生大根堆或者小根堆）</h4><ul>
+<li><strong>(大根堆)**比较：如果当前位置元素比父亲节点元素值</strong>大**，就交换，当前位置挪向父亲节点索引值，再次重复，直到当前位置元素值不大于父亲节点的值</li>
+<li><strong>(小根堆)**比较：如果当前位置元素比父亲节点元素值</strong>小**，就交换，当前位置挪向父亲节点索引值，再次重复，直到当前位置元素值不大于父亲节点的值</li>
+</ul>
+<h4 id="heapify（在0-size-1范围内维护大根堆或者小根堆）"><a href="#heapify（在0-size-1范围内维护大根堆或者小根堆）" class="headerlink" title="heapify（在0~size-1范围内维护大根堆或者小根堆）"></a>heapify（在0~size-1范围内维护大根堆或者小根堆）</h4><ul>
+<li>在当前位置有孩子情况下，判断左右两个孩子大小</li>
+<li>将孩子中较大的和父亲比</li>
+<li>如果这个孩子比父亲大，那孩子和父亲交换位置</li>
+<li>继续向下扫描直到这个节点到达属于它应该的位置，即它比它的孩子都大</li>
+</ul>
+<p>（实际上是在判断当前的这个节点是不是称职的父亲，即它的值要比它的孩子都大）</p>
+<p><em>Note：</em></p>
+<ul>
+<li>父节点 = （index - 1）/ 2</li>
+<li>子节点（左） = （index * 2）+ 1</li>
+<li>子节点（左） = （index * 2）+ 2</li>
+</ul>
+<h2 id="时间复杂度-amp-空间复杂度"><a href="#时间复杂度-amp-空间复杂度" class="headerlink" title="时间复杂度 &amp; 空间复杂度"></a>时间复杂度 &amp; 空间复杂度</h2><h6 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h6><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Code_03_HeapSort</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">heapSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr <span class="token operator">==</span> null <span class="token operator">||</span> arr<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">heapInsert</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> size <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">--</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>size <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">heapify</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">--</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">heapInsert</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span><span class="token punctuation">(</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> index<span class="token punctuation">,</span> <span class="token punctuation">(</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            index <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">heapify</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> index<span class="token punctuation">,</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> left <span class="token operator">=</span> index <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> largest <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> size <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>left <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">?</span> left <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">:</span> left<span class="token punctuation">;</span>
+            largest <span class="token operator">=</span> arr<span class="token punctuation">[</span>largest<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">?</span> largest <span class="token operator">:</span> index<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>largest <span class="token operator">==</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> largest<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            index <span class="token operator">=</span> largest<span class="token punctuation">;</span>
+            left <span class="token operator">=</span> index <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> tmp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<hr>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -470,7 +538,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">https://danie10ne.github.io/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/</a>
+                    <a href="https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/heapsort/">https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/heapsort/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -508,8 +576,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">数据库</span>
+                                <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                                    <span class="chip bg-color">排序</span>
                                 </a>
                             
                         </div>
@@ -555,31 +623,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer27-er-cha-shu-jing-xiang/">
+                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/quicksort/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/71.jpg" class="responsive-img" alt="剑指offer27-二叉树镜像">
+                        <img src="/medias/featureimages/33.jpg" class="responsive-img" alt="快速排序">
                         
-                        <span class="card-title">剑指offer27-二叉树镜像</span>
+                        <span class="card-title">快速排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            剑指offer27-二叉树镜像 Invert Binary TreeInvert a binary tree.
-Example:
-Input:
-     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
+                            什么是快速排序？代码思路时间复杂度 &amp; 空间复杂度
+最坏时间复杂度：O(N^2)
+最优时间复杂度：O(NlogN)
+平均时间复杂度：O(NlogN)
+空间复杂度：O(logN) (递归方式)
+
+代码
+import java.util
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
                         </span>
                         <span class="publish-author">
                             
@@ -596,12 +664,8 @@ Input:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                        <span class="chip bg-color">剑指offer</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">排序</span>
                     </a>
                     
                 </div>
@@ -612,46 +676,51 @@ Input:
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">
+                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/incertsort/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/56.jpg" class="responsive-img" alt="数据库事务">
+                        <img src="/medias/featureimages/46.jpg" class="responsive-img" alt="插入排序">
                         
-                        <span class="card-title">数据库事务</span>
+                        <span class="card-title">插入排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            数据库事务
+                            什么是插入排序？通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。
+
+从数组首位开始确定排好序的元素，一般为升序，即每次确定最小值放在首位
+关注点是最小值
+
+代码思路
+从第一个元素开始，该元素可以认为已经被排
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                    数据库
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                        <span class="chip bg-color">数据库</span>
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">排序</span>
                     </a>
                     
                 </div>

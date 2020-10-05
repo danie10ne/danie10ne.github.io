@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数据库事务, Danielone">
+    <meta name="keywords" content="选择排序, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据库事务 | Danielone</title>
+    <title>选择排序 | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/56.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/30.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据库事务</h1>
+                    <h1 class="description center-align post-title">选择排序</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">数据库</span>
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                                <span class="chip bg-color">排序</span>
                             </a>
                         
                     </div>
@@ -398,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -411,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-01
+                    2020-10-05
                 </div>
                 
 
@@ -427,7 +427,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h1><script>
+                <h2 id="什么是选择排序？"><a href="#什么是选择排序？" class="headerlink" title="什么是选择排序？"></a>什么是选择排序？</h2><p>首先在数组中找最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<ul>
+<li><strong>从数组首位开始确定排好序的元素，一般为升序，即每次确定最小值放在首位</strong></li>
+<li>关注点是最小值</li>
+</ul>
+<h2 id="代码思路"><a href="#代码思路" class="headerlink" title="代码思路"></a>代码思路</h2><ol>
+<li>从数组首位开始遍历</li>
+<li>定义minIndex（最小值索引）</li>
+<li>遍历比较，找到当前范围minIndex，（比较范围是未排序元素数组范围）</li>
+<li>交换，将当前最小值依次放在数组最左边</li>
+</ol>
+<h2 id="时间复杂度-amp-空间复杂度"><a href="#时间复杂度-amp-空间复杂度" class="headerlink" title="时间复杂度 &amp; 空间复杂度"></a>时间复杂度 &amp; 空间复杂度</h2><ul>
+<li>最坏时间复杂度：O(N^2)</li>
+<li>最优时间复杂度：O(N^2)</li>
+<li>平均时间复杂度：O(N^2)</li>
+<li>最坏空间复杂度：O(N)total，O(1)auxiliary</li>
+</ul>
+<h6 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h6><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SelectionSort</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">selectionSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>arr <span class="token operator">==</span> null <span class="token operator">||</span> arr<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">int</span> minIndex <span class="token operator">=</span> i<span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                minIndex <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>minIndex<span class="token punctuation">]</span> <span class="token operator">?</span> j <span class="token operator">:</span> minIndex<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> i<span class="token punctuation">,</span> minIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -470,7 +510,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">https://danie10ne.github.io/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/</a>
+                    <a href="https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/selectsort/">https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/selectsort/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -508,8 +548,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">数据库</span>
+                                <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                                    <span class="chip bg-color">排序</span>
                                 </a>
                             
                         </div>
@@ -555,31 +595,29 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer27-er-cha-shu-jing-xiang/">
+                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/mergesort/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/71.jpg" class="responsive-img" alt="剑指offer27-二叉树镜像">
+                        <img src="/medias/featureimages/70.jpg" class="responsive-img" alt="归并排序">
                         
-                        <span class="card-title">剑指offer27-二叉树镜像</span>
+                        <span class="card-title">归并排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            剑指offer27-二叉树镜像 Invert Binary TreeInvert a binary tree.
-Example:
-Input:
-     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
+                                        return;
+        }
+
+        int mid = (left + right) / 2;
+        process(arr, left, mid);
+        process(ar
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
                         </span>
                         <span class="publish-author">
                             
@@ -596,12 +634,8 @@ Input:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                        <span class="chip bg-color">剑指offer</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">排序</span>
                     </a>
                     
                 </div>
@@ -612,41 +646,37 @@ Input:
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/01/shu-ju-ku/shu-ju-ku-shi-wu/">
+                <a href="/2020/10/04/shu-ju-jie-gou-yu-suan-fa/dfs/jian-zhi-offer55-er-cha-shu-de-shen-du/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/56.jpg" class="responsive-img" alt="数据库事务">
+                        <img src="/medias/featureimages/94.jpg" class="responsive-img" alt="剑指offer55-二叉树的深度">
                         
-                        <span class="card-title">数据库事务</span>
+                        <span class="card-title">剑指offer55-二叉树的深度</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            数据库事务
+                            剑指offer55-二叉树的深度Maximum Depth of Binary TreeGiven a binary tree, find its maximum depth.
+The maximum depth is the number
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                    数据库
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Daniel
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
