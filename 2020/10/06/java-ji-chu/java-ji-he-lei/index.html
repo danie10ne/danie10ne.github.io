@@ -473,7 +473,6 @@
 <p><strong>JDK1.8</strong></p>
 <p>同样使用数组和链表存储数据，但是在一个桶存储的链表长度大于 8 时，会将链表转换为红黑树。这样做是为了避免在链表长度过长时，将遍历链表元素的时间复杂度从O(N)降为O(logN)。</p>
 <p><strong>扩容</strong></p>
-<p><strong>自动双倍扩容，扩容后重新计算每个键值对位置</strong></p>
 <p>与扩容相关的参数有：：capacity、size、threshold 和 load_factor</p>
 <p>当HashMap存储的元素个数超过threshold过载时<code>threshold = loadFactor * capacity</code>，会触发扩容，且<strong>自动双倍扩容，扩容后重新计算每个键值对位置。</strong></p>
 <p><code>capacity</code>默认为16，且capacity 必须保证为 2 的 n 次方，每次扩容时，capacity 为原来的两倍。size表示当前共有多少个K-V对，当 size 大于等于 threshold 就必须进行扩容操作。loadFactor是负载因子，负载因子一般定为0.75。</p>
