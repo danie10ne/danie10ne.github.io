@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="什么时候需要将对象序列化？, Danielone">
+    <meta name="keywords" content="Java泛型中的上下限通配符extends、super, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>什么时候需要将对象序列化？ | Danielone</title>
+    <title>Java泛型中的上下限通配符extends、super | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/79.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">什么时候需要将对象序列化？</h1>
+                    <h1 class="description center-align post-title">Java泛型中的上下限通配符extends、super</h1>
                 </div>
             </div>
         </div>
@@ -427,25 +427,45 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="什么时候需要将对象序列化？"><a href="#什么时候需要将对象序列化？" class="headerlink" title="什么时候需要将对象序列化？"></a>什么时候需要将对象序列化？</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><p><strong>序列化：</strong>将Java对象转换成字节流的过程</p>
-<p><strong>反序列化：</strong>将字节流转换成Java对象的过程</p>
-<p>为了保障在JVM停止运行后，能够保存对象的状态信息，即成员变量信息，持久化指定的对象，并在将来重新读取被保障的对象。</p>
-<h2 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h2><ul>
-<li>当Java对象需要在网络中传输时</li>
-<li>当Java对象需要持久化存储到文件中时</li>
-<li>远程方法调用</li>
-</ul>
-<h2 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h2><ul>
-<li><p>只要类实现了Serializable接口（此接口实际上是没有方法的），此类就可以支持被序列化或者反序列化。</p>
-</li>
-<li><p>如果一个类想要被序列化，必须实现Serializable接口，否则将抛出<code>NotSerializableException</code>异常，这是因为在序列化操作的过程中，会对类型进行检查（在writeObject方法中），要求被序列化的类必须属于Enum、Array和Serializable类型其中的任何一种。</p>
-</li>
-<li><p>声明为<strong>static</strong>和<strong>transient</strong>的成员变量，不能被序列化，因此在变量中声明了此关键字，可以组织变量被序列化。</p>
-</li>
-</ul>
-<p>这里需要说明的是ArrayList的<code>transient Object[] elementData</code>声明了<strong>transient</strong>，但是实际上ArrayList依然可以被序列化，这是因为对象的序列化过程实质是通过ObjectOutputStream和ObjectInputputStream来实现，其利用反射的方式调用writeObjectMethod方法，来对ArrayList的元素进行序列化。</p>
-<p><strong>为什么不直接对ArrayList序列化呢？</strong></p>
-<p>ArrayList实际上是动态数组，每次在放满以后自动增长设定的长度值，如果数组自动增长长度设为100，而实际只放了一个元素，那就会序列化99个null元素。为了保证在序列化的时候不会将这么多null同时进行序列化，ArrayList把元素数组设置为transient。这样可以防止一个包含大量空对象的数组被序列化，达到优化存储的效果。</p>
+                <h1 id="Java泛型中的上下限通配符extends、super"><a href="#Java泛型中的上下限通配符extends、super" class="headerlink" title="Java泛型中的上下限通配符extends、super"></a>Java泛型中的上下限通配符extends、super</h1><p>在平时看源码的时候我们经常看到泛型，且经常会看到<code>extends</code>和<code>super</code>的使用，看过其他的文章里也有讲到上界通配符和下届通配符，总感觉讲的不够明白。这里备注一下，以免忘记。</p>
+<ol>
+<li><code>extends</code>也成为上界通配符，就是指定上边界。即泛型中的类必须为当前类的子类或当前类。</li>
+<li><code>super</code>也称为下届通配符，就是指定下边界。即泛型中的类必须为当前类或者其父类。</li>
+</ol>
+<p>这两点不难理解，<code>extends</code>修饰的只能取，不能放，这是为什么呢？</p>
+<p>先看一个列子：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Food</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Fruit</span> <span class="token keyword">extends</span> <span class="token class-name">Food</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Apple</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Banana</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GenericTest</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testExtends</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span><span class="token operator">></span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">//报错,extends为上界通配符,只能取值,不能放.</span>
+        <span class="token comment" spellcheck="true">//因为Fruit的子类不只有Apple还有Banana,这里不能确定具体的泛型到底是Apple还是Banana，所以放入任何一种类型都会报错</span>
+        <span class="token comment" spellcheck="true">//list.add(new Apple());</span>
+
+        <span class="token comment" spellcheck="true">//可以正常获取</span>
+        Fruit fruit <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSuper</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> Fruit<span class="token operator">></span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">//super为下界通配符，可以存放元素，但是也只能存放当前类或者子类的实例，以当前的例子来讲，</span>
+        <span class="token comment" spellcheck="true">//无法确定Fruit的父类是否只有Food一个(Object是超级父类)</span>
+        <span class="token comment" spellcheck="true">//因此放入Food的实例编译不通过</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Apple</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//list.add(new Food());</span>
+
+        Object object <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在<code>testExtends</code>方法中，因为泛型中用的是<code>extends</code>，在向<code>list</code>中存放元素的时候，我们并不能确定<code>List</code>中的元素的具体类型，即可能是<code>Apple</code>也可能是<code>Banana</code>。因此调用<code>add</code>方法时，不论传入<code>new Apple()</code>还是<code>new Banana()</code>，都会出现编译错误。</p>
+<p>理解了<code>extends</code>之后，再看<code>super</code>就很容易理解了，即我们不能确定<code>testSuper</code>方法的参数中的泛型是<code>Fruit</code>的哪个父类，因此在调用<code>get</code>方法时只能返回<code>Object</code>类型。结合<code>extends</code>可见，在获取泛型元素时，使用<code>extends</code>获取到的是泛型中的上边界的类型(本例子中为Fruit),范围更小。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>在使用泛型时，存取元素时用<code>super</code>,获取元素时，用<code>extends</code>。</p>
+<p>本文来源：<a target="_blank" rel="noopener" href="https://juejin.im/post/5c653fe06fb9a049e3089d88">https://juejin.im/post/5c653fe06fb9a049e3089d88</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -489,7 +509,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/06/java-ji-chu/xu-lie-hua/">https://danie10ne.github.io/2020/10/06/java-ji-chu/xu-lie-hua/</a>
+                    <a href="https://danie10ne.github.io/2020/10/06/java-ji-chu/java-fan-xing-zhong-de-shang-xia-xian-tong-pei-fu-extends-super/">https://danie10ne.github.io/2020/10/06/java-ji-chu/java-fan-xing-zhong-de-shang-xia-xian-tong-pei-fu-extends-super/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -570,32 +590,32 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/template/">
+                <a href="/2020/10/06/java-ji-chu/java-fan-xing-zhong-de-shang-xia-xian-tong-pei-fu-extends-super/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Java泛型中的上下限通配符extends、super">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">Java泛型中的上下限通配符extends、super</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            标题
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { retu
+                            Java泛型中的上下限通配符extends、super在平时看源码的时候我们经常看到泛型，且经常会看到extends和super的使用，看过其他的文章里也有讲到上界通配符和下届通配符，总感觉讲的不够明白。这里备注一下，以免忘记。
+
+exte
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -608,6 +628,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -626,21 +647,20 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/junit/">
+                <a href="/2020/10/06/java-ji-chu/java-ji-he-lei/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="JUnit使用">
+                        <img src="/medias/featureimages/41.jpg" class="responsive-img" alt="Java集合类">
                         
-                        <span class="card-title">JUnit使用</span>
+                        <span class="card-title">Java集合类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JUnit使用JUnit特性JUnit是一个Java语言的单元测试框架，JUnit 促进了“先测试后编码”的理念，强调建立测试数据的一段代码，可以先测试，然后再应用。
-
-一个正式的编写好的单元测试用例的特点是：已知输入和预期输出，即在测试执
+                            Java集合类1. Collection 和 Collections 区别Collection是集合的接口，提供了多个通用的接口方法，供诸如list、set等实现。
+Collections是一个包装类，其内部的方法都为静态方法，因此不能被实
                         
                     </div>
                     <div class="publish-info">

@@ -449,7 +449,7 @@
 <pre class=" language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">afterNodeAccess</span><span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span> 
 <span class="token keyword">void</span> <span class="token function">afterNodeInsertion</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> evict<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span></code></pre>
 <p><strong>afterNodeAccess()</strong></p>
-<p>当一个节点被访问时，如果 accessOrder 为 true，则会将该节点移到链表尾部。也就是说指定为 LRU 顺序之后，在 每次访问一个节点时，会将这个节点移到链表尾部，保证链表尾部是最近访问的节点，那么链表首部就是最近最久未 使用的节点。</p>
+<p>当一个节点被访问时，如果 accessOrder 为 true，则会将该节点移到链表尾部。也就是说指定为 LRU 顺序之后，在 每次访问一个节点时，会将这个节点移到链表尾部，保证链表尾部是最近访问的节点，那么链表首部就是最近最久未使用的节点。</p>
 <p><strong>afterNodeInsertion()</strong></p>
 <p>在 put 等操作之后执行，当 removeEldestEntry() 方法返回 true 时会移除最晚的节点，也就是链表首部节点 ﬁrst。</p>
 <p><strong>使用LinkedHashMap实现LRU</strong></p>
@@ -463,6 +463,21 @@
 <p>HashMap通过<strong>数组+链表</strong>存储数据，内部包含一个Entry类的数组，Entry类包含四个字段，<code>k、v、next、hash</code>来实现数组和链表的结构存储数据。</p>
 <p><strong>插入put：</strong></p>
 <p>在插入新元素时，不同元素的hash值可能相同，也就意味着hash冲突，在1.7版本中解决hash冲突的办法是使用<strong>拉链法</strong>，新插入的元素插入到对应entry链表的头部（头插法），之所以采用头插法是新插入的元素可能更容易被查找。</p>
+<p><strong>常见的解决碰撞的方法</strong></p>
+<ul>
+<li><p>开放定址法</p>
+<p>开放定址法就是一旦发生了冲突，就去寻找下一个空的散列地址，只要散列表足够大，空的散列地址总能找到，并将记录存入。</p>
+</li>
+<li><p>链地址法</p>
+<p>将哈希表的每个单元作为链表的头结点，所有哈希地址为i的元素构成一个同义词链表。即发生冲突时就把该关键字链在以该单元为头结点的链表的尾部。</p>
+</li>
+<li><p>再哈希法</p>
+<p>当哈希地址发生冲突用其他的函数计算另一个哈希函数地址，直到冲突不再产生为止。</p>
+</li>
+<li><p>建立公共溢出区</p>
+<p>将哈希表分为基本表和溢出表两部分，发生冲突的元素都放入溢出表中。</p>
+</li>
+</ul>
 <p><strong>查找get：</strong></p>
 <ul>
 <li>计算键值对所在的桶Entry</li>
@@ -482,7 +497,7 @@
 </li>
 <li><p>为什么容量必须保证为 2 的 n 次方？</p>
 <p>因为hashmap通过取模获取元素的entry位置时，是通过按位与的方式实现快速查找Entry位置的，而要使得按位与和取余等价则必须保证容量是 2 的 n 次方。</p>
-<pre class=" language-java"><code class="language-java">X <span class="token operator">%</span> <span class="token number">2</span><span class="token operator">^</span>n <span class="token operator">=</span> X <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">^</span>n – <span class="token number">1</span><span class="token punctuation">)</span></code></pre>
+<pre class=" language-java"><code class="language-java">X <span class="token operator">%</span> <span class="token number">2</span><span class="token operator">^</span>n <span class="token operator">=</span> X <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">^</span>n – <span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//X表示hash值</span></code></pre>
 </li>
 <li><p>为什么按位与取模？</p>
 <p>这样做的好处是相比于使用“%”取模，不需要将hash转为int计算，节省计算成本，同时按位与的话也避免了复杂的正负计算，因为hash值为int类型</p>
@@ -617,31 +632,31 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/java-ji-he-lei/">
+                <a href="/2020/10/06/java-ji-chu/java-fan-xing-zhong-de-shang-xia-xian-tong-pei-fu-extends-super/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/41.jpg" class="responsive-img" alt="Java集合类">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Java泛型中的上下限通配符extends、super">
                         
-                        <span class="card-title">Java集合类</span>
+                        <span class="card-title">Java泛型中的上下限通配符extends、super</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java集合类1. Collection 和 Collections 区别Collection是集合的接口，提供了多个通用的接口方法，供诸如list、set等实现。
-Collections是一个包装类，其内部的方法都为静态方法，因此不能被实
+                            Java泛型中的上下限通配符extends、super在平时看源码的时候我们经常看到泛型，且经常会看到extends和super的使用，看过其他的文章里也有讲到上界通配符和下届通配符，总感觉讲的不够明白。这里备注一下，以免忘记。
+
+exte
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -654,7 +669,6 @@ Collections是一个包装类，其内部的方法都为静态方法，因此不
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -673,22 +687,22 @@ Collections是一个包装类，其内部的方法都为静态方法，因此不
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/xu-lie-hua/">
+                <a href="/2020/10/06/java-ji-chu/template/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/33.jpg" class="responsive-img" alt="序列化">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">序列化</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            序列化
+                            标题
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
-            if (!el.dataset.src) { ret
+            if (!el.dataset.src) { retu
                         
                     </div>
                     <div class="publish-info">

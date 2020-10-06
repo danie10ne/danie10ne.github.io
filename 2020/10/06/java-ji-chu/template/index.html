@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="什么时候需要将对象序列化？, Danielone">
+    <meta name="keywords" content="Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>什么时候需要将对象序列化？ | Danielone</title>
+    <title>Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/79.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">什么时候需要将对象序列化？</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -427,26 +427,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="什么时候需要将对象序列化？"><a href="#什么时候需要将对象序列化？" class="headerlink" title="什么时候需要将对象序列化？"></a>什么时候需要将对象序列化？</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><p><strong>序列化：</strong>将Java对象转换成字节流的过程</p>
-<p><strong>反序列化：</strong>将字节流转换成Java对象的过程</p>
-<p>为了保障在JVM停止运行后，能够保存对象的状态信息，即成员变量信息，持久化指定的对象，并在将来重新读取被保障的对象。</p>
-<h2 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h2><ul>
-<li>当Java对象需要在网络中传输时</li>
-<li>当Java对象需要持久化存储到文件中时</li>
-<li>远程方法调用</li>
-</ul>
-<h2 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h2><ul>
-<li><p>只要类实现了Serializable接口（此接口实际上是没有方法的），此类就可以支持被序列化或者反序列化。</p>
-</li>
-<li><p>如果一个类想要被序列化，必须实现Serializable接口，否则将抛出<code>NotSerializableException</code>异常，这是因为在序列化操作的过程中，会对类型进行检查（在writeObject方法中），要求被序列化的类必须属于Enum、Array和Serializable类型其中的任何一种。</p>
-</li>
-<li><p>声明为<strong>static</strong>和<strong>transient</strong>的成员变量，不能被序列化，因此在变量中声明了此关键字，可以组织变量被序列化。</p>
-</li>
-</ul>
-<p>这里需要说明的是ArrayList的<code>transient Object[] elementData</code>声明了<strong>transient</strong>，但是实际上ArrayList依然可以被序列化，这是因为对象的序列化过程实质是通过ObjectOutputStream和ObjectInputputStream来实现，其利用反射的方式调用writeObjectMethod方法，来对ArrayList的元素进行序列化。</p>
-<p><strong>为什么不直接对ArrayList序列化呢？</strong></p>
-<p>ArrayList实际上是动态数组，每次在放满以后自动增长设定的长度值，如果数组自动增长长度设为100，而实际只放了一个元素，那就会序列化99个null元素。为了保证在序列化的时候不会将这么多null同时进行序列化，ArrayList把元素数组设置为transient。这样可以防止一个包含大量空对象的数组被序列化，达到优化存储的效果。</p>
-<script>
+                <h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -489,7 +470,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/06/java-ji-chu/xu-lie-hua/">https://danie10ne.github.io/2020/10/06/java-ji-chu/xu-lie-hua/</a>
+                    <a href="https://danie10ne.github.io/2020/10/06/java-ji-chu/template/">https://danie10ne.github.io/2020/10/06/java-ji-chu/template/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -574,22 +555,20 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/template/">
+                <a href="/2020/10/06/java-ji-chu/java-ji-he-lei/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/41.jpg" class="responsive-img" alt="Java集合类">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">Java集合类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            标题
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { retu
+                            Java集合类1. Collection 和 Collections 区别Collection是集合的接口，提供了多个通用的接口方法，供诸如list、set等实现。
+Collections是一个包装类，其内部的方法都为静态方法，因此不能被实
                         
                     </div>
                     <div class="publish-info">
@@ -626,21 +605,22 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/junit/">
+                <a href="/2020/10/06/java-ji-chu/xu-lie-hua/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="JUnit使用">
+                        <img src="/medias/featureimages/79.jpg" class="responsive-img" alt="什么时候需要将对象序列化？">
                         
-                        <span class="card-title">JUnit使用</span>
+                        <span class="card-title">什么时候需要将对象序列化？</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JUnit使用JUnit特性JUnit是一个Java语言的单元测试框架，JUnit 促进了“先测试后编码”的理念，强调建立测试数据的一段代码，可以先测试，然后再应用。
+                            什么时候需要将对象序列化？1. 概念序列化：将Java对象转换成字节流的过程
+反序列化：将字节流转换成Java对象的过程
+为了保障在JVM停止运行后，能够保存对象的状态信息，即成员变量信息，持久化指定的对象，并在将来重新读取被保障的对象。
 
-一个正式的编写好的单元测试用例的特点是：已知输入和预期输出，即在测试执
                         
                     </div>
                     <div class="publish-info">
