@@ -604,23 +604,25 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/05/java-ji-chu/wei-shi-me-shuo-java-shi-zhi-chuan-di/">
+                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/incertsort/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/62.jpg" class="responsive-img" alt="为什么说Java是值传递">
+                        <img src="/medias/featureimages/46.jpg" class="responsive-img" alt="插入排序">
                         
-                        <span class="card-title">为什么说Java是值传递</span>
+                        <span class="card-title">插入排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            为什么说 Java 中只有值传递
-值传递（pass by value）是指在调用函数时将实际参数复制一份传递到函数中，这样在函数中如果对参数进行修改，将不会影响到实际参数。
+                            什么是插入排序？通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。
 
+从数组首位开始确定排好序的元素，一般为升序，即每次确定最小值放在首位
+关注点是最小值
 
-引用传递（pass by reference）是指在调用函数时
+代码思路
+从第一个元素开始，该元素可以认为已经被排
                         
                     </div>
                     <div class="publish-info">
@@ -631,8 +633,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
@@ -642,8 +644,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Java基础</span>
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">排序</span>
                     </a>
                     
                 </div>
@@ -657,25 +659,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/heapsort/">
+                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/mergesort/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/33.jpg" class="responsive-img" alt="堆排序">
+                        <img src="/medias/featureimages/70.jpg" class="responsive-img" alt="归并排序">
                         
-                        <span class="card-title">堆排序</span>
+                        <span class="card-title">归并排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            什么是堆排序？
-heapinsert: 先把数组变成大根堆或者小根堆
-把堆顶的元素放到数组最末位，并且固定，即不再扫描，size–
-heapify：维护当前堆大小范围内的为小根堆或者大根堆
-循环2、3步，直到size为0
+                                        return;
+        }
 
-heapinse
+        int mid = (left + right) / 2;
+        process(arr, left, mid);
+        process(ar
                         
                     </div>
                     <div class="publish-info">
@@ -844,7 +845,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
     <div class="container row center-align" style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Daniel</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
