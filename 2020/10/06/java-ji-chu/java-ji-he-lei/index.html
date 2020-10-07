@@ -443,7 +443,7 @@
 <h3 id="4）Set如何保证元素不重复？"><a href="#4）Set如何保证元素不重复？" class="headerlink" title="4）Set如何保证元素不重复？"></a>4）Set如何保证元素不重复？</h3><p>在Java中Set分为两种：TreeSet和HashSet</p>
 <p><strong>TreeSet：</strong>TreeSet的底层是通过TreeMap（红黑树）来实现的，Treeset中的数据是自动排好序的，红黑树实质是一个二叉平衡搜索树，每个节点的左右子树高度不能超过较矮那棵的一倍。</p>
 <p>在TreeSet中插入新元素时，通过调用compareTo()方法来判断元素是否重复，且不允许放入null值。</p>
-<p><strong>HashSet：</strong>HashSet的底层是通过HashMap来实现的，HashSet中的数据是无序的，可以放入null，但只能放入一个null。插入新元素时，首先计算新元素的hashcode，再通过扰动计算和按位计算得到此元素在HashMap存储结构中的存放位置，如果此位置为空，则添加此元素，如果不为空，则通过覆盖了的equal()方法，判断当前插入元素是否与已存在元素相等，如果不相等则添加新元素，相等则不添加。</p>
+<p><strong>HashSet：</strong>HashSet的底层是通过HashMap来实现的，HashSet中的数据是无序的，可以放入null，但只能放入一个null。插入新元素时，首先计算新元素的hashcode，再通过扰动计算和按位计算得到此元素在HashMap存储结构中的存放位置，如果此位置为空，则添加此元素，如果不为空，则通过重写了的equal()方法，判断当前插入元素是否与已存在元素相等，如果不相等则添加新元素，相等则不添加。</p>
 <h3 id="5）LinkedHashMap"><a href="#5）LinkedHashMap" class="headerlink" title="5）LinkedHashMap"></a>5）LinkedHashMap</h3><p>继承自HashMap，因此具有快速查找的特性，同时内部维护了一个双向链表，用来维护LRU顺序或者插入顺序。</p>
 <p>LinkedHashMap 最重要的是以下用于维护顺序的函数，它们会在 put、get 等方法中调用。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">afterNodeAccess</span><span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span> 
@@ -648,9 +648,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java泛型中的上下限通配符extends、super在平时看源码的时候我们经常看到泛型，且经常会看到extends和super的使用，看过其他的文章里也有讲到上界通配符和下届通配符，总感觉讲的不够明白。这里备注一下，以免忘记。
-
-exte
+                            extends为上界通配符，就是指定上边界，super为下届通配符，就是指定下边界
                         
                     </div>
                     <div class="publish-info">
@@ -699,9 +697,7 @@ exte
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JUnit使用JUnit特性JUnit是一个Java语言的单元测试框架，JUnit 促进了“先测试后编码”的理念，强调建立测试数据的一段代码，可以先测试，然后再应用。
-
-一个正式的编写好的单元测试用例的特点是：已知输入和预期输出，即在测试执
+                            JUnit是一个Java语言的单元测试框架，JUnit 促进了“先测试后编码”的理念，强调建立测试数据的一段代码，可以先测试，然后再应用。
                         
                     </div>
                     <div class="publish-info">

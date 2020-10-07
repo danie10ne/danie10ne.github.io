@@ -467,7 +467,7 @@
 <li>StringBuilder 并没有对方法加同步锁，所以是非线程安全的。</li>
 <li>String可以理解为常量，所以线程安全。</li>
 </ul>
-<p><strong>三者使用的总结：**</strong></p>
+<p><strong>三者使用的总结：</strong></p>
 <ol>
 <li><p>操作少量的数据 = String</p>
 </li>
@@ -508,8 +508,8 @@
    <span class="token keyword">return</span> <span class="token punctuation">(</span>obj <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"null"</span> <span class="token operator">:</span> obj<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <p>从上面源码可以看出，可以不用担心Object为null，但使用的时候也要小心，<strong>当Object为null时，它的返回值是“null”，而不是null</strong>，这是有区别的。</p>
-<h2 id="String有长度限制吗？"><a href="#String有长度限制吗？" class="headerlink" title="String有长度限制吗？"></a>String有长度限制吗？</h2><p>字符串有长度限制，在编译期，要求字符串常量池中的常量不能超过65535，并且在javac执行过程中控制了最大值为65534。</p>
-<p>在运行期，长度不能超过Int的范围，否则会抛异常。</p>
+<h2 id="String有长度限制吗？"><a href="#String有长度限制吗？" class="headerlink" title="String有长度限制吗？"></a>String有长度限制吗？</h2><p>字符串有长度限制，在编译期，要求字符串常量池中的常量不能超过65535(2^16 - 1)，并且在javac执行过程中控制了最大值为65534。</p>
+<p>在运行期，长度不能超过Int的范围，否则会抛异常，因为在其构造函数中，有对Stirng类型的长度的定义：<code>public String(byte bytes[], int offset, int length) </code>根据Integer类的定义，<code>java.lang.Integer#MAX_VALUE</code>的最大值是2^31 - 1。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -701,9 +701,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            自动拆装箱什么是包装类型和基本类型，以及自动拆装箱基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱完成。
-
-装箱：自动装箱就是Java自动将原始基本类型值转换成对应的对象，比如将int的变量转换成Integ
+                            什么是包装类型和基本类型，以及自动拆装箱
                         
                     </div>
                     <div class="publish-info">
