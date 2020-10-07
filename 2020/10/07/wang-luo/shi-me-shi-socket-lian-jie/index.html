@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="IO, Danielone">
+    <meta name="keywords" content="什么是SOCKET连接？, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>IO | Danielone</title>
+    <title>什么是SOCKET连接？ | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/62.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">IO</h1>
+                    <h1 class="description center-align post-title">什么是SOCKET连接？</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">Java基础</span>
+                            <a href="/tags/%E5%A5%97%E6%8E%A5%E5%AD%97/">
+                                <span class="chip bg-color">套接字</span>
                             </a>
                         
                     </div>
@@ -398,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Java/" class="post-category">
-                                Java
+                            <a href="/categories/%E7%BD%91%E7%BB%9C/" class="post-category">
+                                网络
                             </a>
                         
                     </div>
@@ -427,7 +427,68 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><script>
+                <h1 id="什么是SOCKET连接？"><a href="#什么是SOCKET连接？" class="headerlink" title="什么是SOCKET连接？"></a>什么是SOCKET连接？</h1><h2 id="1-套接字（socket）概念"><a href="#1-套接字（socket）概念" class="headerlink" title="1. 套接字（socket）概念"></a>1. 套接字（socket）概念</h2><ul>
+<li>套接字（socket）是通信的基石，是支持TCP/IP协议的网络通信的基本操作单元，也是其中间抽象层接口，Scoket将TCP/IP复杂的处理方法隐藏在接口之后，对于用户而言只需要调用Scoket接口服务即可获取相应网络服务。</li>
+<li>包含进行网络通信必须的五种信息：<strong>连接使用的协议，本地主机的IP地址，本地进程的协议端口，远地主机的IP地址，远地进程的协议端口。</strong></li>
+<li>socket 其实就是一个五元组，包括：<strong>源IP, 源端口, 目的IP, 目的端口, 类型(TCP or UDP)</strong> 这个五元组，即标识了一条可用的连接。</li>
+</ul>
+<blockquote>
+<p>为了区别不同的应用程序进程和连接，许多计算机操作系统为应用程序与TCP／IP协议交互提供了套接字(Socket)接口。应用层可以和传输层通过Socket接口，区分来自不同应用程序进程或网络连接的通信，实现数据传输的并发服务。</p>
+</blockquote>
+<p><img src="/Users/daniel/Documents/blog/source/_posts/%E5%9B%BE%E5%BA%8A/socket.png" alt="socket"></p>
+<h2 id="2-建立socket连接"><a href="#2-建立socket连接" class="headerlink" title="2. 建立socket连接"></a>2. 建立socket连接</h2><ul>
+<li>建立Socket连接至少需要一对套接字</li>
+<li>ClientSocket运行于客户端</li>
+<li>ServerSocket运行于服务器端</li>
+</ul>
+<p><strong>套接字之间的连接过程分为三个步骤：</strong></p>
+<ol>
+<li>服务器监听：服务器端套接字并不定位具体的客户端套接字，而是处于等待连接的状态，实时监控网络状态，等待客户端的连接请求。</li>
+<li>客户端请求：指客户端的套接字提出连接请求，要连接的目标是服务器端的套接字。为此，客户端的套接字必须首先描述它要连接的服务器的套接字，指出服务器端套接字的地址和端口号，然后就向服务器端套接字提出连接请求。</li>
+<li>连接确认：当服务器端套接字监听到或者说接收到客户端套接字的连接请求时，就响应客户端套接字的请求，建立一个新的线程，把服务器端套接字的描述发 给客户端，一旦客户端确认了此描述，双方就正式建立连接。而服务器端套接字继续处于监听状态，继续接收其他客户端套接字的连接请求。</li>
+</ol>
+<h2 id="3-Socket通信过程"><a href="#3-Socket通信过程" class="headerlink" title="3. Socket通信过程"></a>3. Socket通信过程</h2><p><strong>客户端请求</strong> -&gt; 序列化 -&gt; write buffer -&gt; socket -&gt; TCP/IP or UDP -&gt; 客户端链路 -&gt; 交换机 -&gt; 路由 -&gt; 交换机 -&gt; 服务端链路 -&gt; TCP/IP or UDP -&gt; socket -&gt; read buffer -&gt; 反序列化 -&gt; <strong>服务端响应</strong> -&gt; 序列化 -&gt; write buffer -&gt; socket -&gt; TCP/IP or UDP -&gt; 服务端链路 -&gt; 交换机 -&gt; 路由 -&gt; 交换机 -&gt; <strong>客户端接收响应</strong> -&gt; 链路 -&gt; TCP/IP or UDP -&gt; socket -&gt; read buffer -&gt; <strong>关闭连接</strong></p>
+<p><strong>服务端</strong></p>
+<ol>
+<li><p>初始化Socket<code>socket()</code></p>
+</li>
+<li><p>与端口绑定<code>bind()</code></p>
+</li>
+<li><p>对端口进行监听<code>listen()</code></p>
+</li>
+<li><p>调用<code>accept()</code>堵塞等待客户端连接</p>
+</li>
+</ol>
+<p><strong>客户端</strong></p>
+<ol>
+<li>初始化Socket<code>socket()</code></li>
+<li>与端口绑定<code>bind()</code></li>
+<li>连接服务端<code>connect()</code></li>
+<li>连接成功，发送请求<code>write()</code></li>
+</ol>
+<p>客户端首先封装一个请求对象<code>req</code>，将其序列化成为字节数组（序列化后的请求消息对象<code>req</code>），同时拷贝到操作系统到内核区套接字对象的<code>write buffer</code>中，内核网络模块会有单独的线程负责不停地将<code>write buffer</code>的数据拷贝到网卡硬件，网卡硬件再将数据传送到网线，经过一系列路由器和交换机，最终送达服务器的网卡硬件中。</p>
+<p><strong>服务端</strong></p>
+<ol>
+<li>接收请求并处理<code>read()</code></li>
+<li>将回应发送给客户端<code>write()</code></li>
+</ol>
+<p>服务端内核的网络模块也有单独的线程不停地接收到数据拷贝到套接字的<code>read buffer</code>中等待用户层来读取，最终服务端的用户进程通过socket引用的<code>read()</code>方法将<code>read buffer</code>中的数据拷贝到用户程序内部中，进行反序列化成请求对象<code>req</code>进行处理，然后服务端将处理后的响应对象，按相反的流程发送给客户端。</p>
+<p><strong>客户端</strong></p>
+<ol>
+<li>读取来自服务端的响应<code>read()</code></li>
+<li>关闭连接<code>close()</code>，交互结束  </li>
+</ol>
+<p><img src="/Users/daniel/Documents/blog/source/_posts/%E5%9B%BE%E5%BA%8A/socket_response.png" alt="socket_response"></p>
+<h2 id="4-Socket连接与TCP连接"><a href="#4-Socket连接与TCP连接" class="headerlink" title="4. Socket连接与TCP连接"></a>4. Socket连接与TCP连接</h2><ul>
+<li>创建Socket连接时，可以指定使用的传输层协议</li>
+<li>Socket可以支持不同的传输层协议（TCP或UDP），当使用TCP协议进行连接时，该Socket连接就是一个TCP连接。</li>
+</ul>
+<h2 id="5-Socket连接与HTTP连接"><a href="#5-Socket连接与HTTP连接" class="headerlink" title="5. Socket连接与HTTP连接"></a>5. Socket连接与HTTP连接</h2><ul>
+<li>HTTP连接使用的是“请求—响应”的方式，不仅在请求时需要先建立连接，而且需要客户端向服务器发出请求后，服务器端才能回复数据。</li>
+<li>若双方建立的是Socket连接，服务器就可以直接将数据传送给客户端。</li>
+<li>若双方建立的是HTTP连接，则服务器需要等到客户端发送一次请求后才能将数据传回给客户端。</li>
+</ul>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -470,7 +531,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/07/java-ji-chu/io/">https://danie10ne.github.io/2020/10/07/java-ji-chu/io/</a>
+                    <a href="https://danie10ne.github.io/2020/10/07/wang-luo/shi-me-shi-socket-lian-jie/">https://danie10ne.github.io/2020/10/07/wang-luo/shi-me-shi-socket-lian-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -508,8 +569,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">Java基础</span>
+                                <a href="/tags/%E5%A5%97%E6%8E%A5%E5%AD%97/">
+                                    <span class="chip bg-color">套接字</span>
                                 </a>
                             
                         </div>
@@ -551,9 +612,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/10/07/wang-luo/shi-me-shi-socket-lian-jie/">
                     <div class="card-image">
@@ -571,9 +633,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -586,6 +648,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -604,22 +667,22 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/07/java-ji-chu/java8/">
+                <a href="/2020/10/07/java-ji-chu/io/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/62.jpg" class="responsive-img" alt="IO">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">IO</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java8
+                            IO
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
-            if (!el.dataset.src) { r
+            if (!el.dataset.src) { retu
                         
                     </div>
                     <div class="publish-info">
