@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java泛型中的上下限通配符extends、super, Danielone">
+    <meta name="keywords" content="实现getMin栈, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java泛型中的上下限通配符extends、super | Danielone</title>
+    <title>实现getMin栈 | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/55.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java泛型中的上下限通配符extends、super</h1>
+                    <h1 class="description center-align post-title">实现getMin栈</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">Java基础</span>
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%A0%88/">
+                                <span class="chip bg-color">栈</span>
                             </a>
                         
                     </div>
@@ -398,8 +402,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Java/" class="post-category">
-                                Java
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
                             </a>
                         
                     </div>
@@ -411,7 +415,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-06
+                    2020-10-07
                 </div>
                 
 
@@ -427,45 +431,101 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java泛型中的上下限通配符extends、super"><a href="#Java泛型中的上下限通配符extends、super" class="headerlink" title="Java泛型中的上下限通配符extends、super"></a>Java泛型中的上下限通配符extends、super</h1><p>在平时看源码的时候我们经常看到泛型，且经常会看到<code>extends</code>和<code>super</code>的使用，看过其他的文章里也有讲到上界通配符和下届通配符，总感觉讲的不够明白。这里备注一下，以免忘记。</p>
-<ol>
-<li><code>extends</code>也称为上界通配符，就是指定上边界。即泛型中的类必须为当前类的子类或当前类。</li>
-<li><code>super</code>也称为下届通配符，就是指定下边界。即泛型中的类必须为当前类或者其父类。</li>
-</ol>
-<p>这两点不难理解，<code>extends</code>修饰的只能取，不能放，这是为什么呢？</p>
-<p>先看一个列子：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Food</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Fruit</span> <span class="token keyword">extends</span> <span class="token class-name">Food</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Apple</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Banana</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+                <h1 id="实现getMin栈"><a href="#实现getMin栈" class="headerlink" title="实现getMin栈"></a>实现getMin栈</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>实现一个特殊功能的栈，在实现栈的基本功能的基础上，再实现返回栈中最小元素的操作。</p>
+<h2 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h2><pre><code>第一行输入一个整数N，表示对栈进行的操作总数。
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GenericTest</span> <span class="token punctuation">{</span>
+下面N行每行输入一个字符串S，表示操作的种类。
 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testExtends</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span><span class="token operator">></span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+如果S为"push"，则后面还有一个整数X表示向栈里压入整数X。
 
-        <span class="token comment" spellcheck="true">//报错,extends为上界通配符,只能取值,不能放.</span>
-        <span class="token comment" spellcheck="true">//因为Fruit的子类不只有Apple还有Banana,这里不能确定具体的泛型到底是Apple还是Banana，所以放入任何一种类型都会报错</span>
-        <span class="token comment" spellcheck="true">//list.add(new Apple());</span>
+如果S为"pop"，则表示弹出栈顶操作。
 
-        <span class="token comment" spellcheck="true">//可以正常获取</span>
-        Fruit fruit <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+如果S为"getMin"，则表示询问当前栈中的最小元素是多少。</code></pre>
+<h2 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a>输出描述:</h2><pre><code>对于每个getMin操作，输出一行表示当前栈中的最小元素是多少。</code></pre>
+<p>示例1</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><pre><code>6
+push 3
+push 2
+push 1
+getMin
+pop
+getMin</code></pre>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><pre><code>1
+2</code></pre>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注:"></a>备注:</h2><pre><code>1&lt;=N&lt;=1000000
+
+-1000000&lt;=X&lt;=1000000
+
+数据保证没有不合法的操作</code></pre>
+<h2 id="解题思想"><a href="#解题思想" class="headerlink" title="解题思想"></a>解题思想</h2><ul>
+<li>使用两个栈</li>
+<li>stackData：保存当前栈中的元素，其功能和一个正常的栈没有区别，这个栈记为stackData；另一个栈用于保存每一步的最小值，这个栈记为stackMin”</li>
+<li>stackMin：最小栈，保存每一步操作时的最小值</li>
+</ul>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">minStack</span><span class="token punctuation">{</span>
+        <span class="token keyword">private</span> Stack<span class="token operator">&lt;</span>Integer<span class="token operator">></span> stackData<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> Stack<span class="token operator">&lt;</span>Integer<span class="token operator">></span> stackMin<span class="token punctuation">;</span>
+          <span class="token comment" spellcheck="true">//初始化两个栈</span>
+        <span class="token keyword">public</span> <span class="token function">minStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>stackData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>stackMin <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+          <span class="token comment" spellcheck="true">//push操作：如果push元素小于最小栈的栈顶元素，data需push到最小栈</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            stackData<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>stackMin<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                stackMin<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>stackMin<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> data<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                stackMin<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>stackMin<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> data<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                stackMin<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>stackMin<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+          <span class="token comment" spellcheck="true">//peek最小栈栈顶元素即可</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getMin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>stackMin<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"stack is empty"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>stackMin<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+          <span class="token comment" spellcheck="true">//记住要同时pop两个栈的栈顶元素</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>stackData<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> stackMin<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"stack is empty"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+                stackData<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                stackMin<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSuper</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> Fruit<span class="token operator">></span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
-
-        <span class="token comment" spellcheck="true">//super为下界通配符，可以存放元素，但是也只能存放当前类或者子类的实例，以当前的例子来讲，</span>
-        <span class="token comment" spellcheck="true">//无法确定Fruit的父类是否只有Food一个(Object是超级父类)</span>
-        <span class="token comment" spellcheck="true">//因此放入Food的实例编译不通过</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Apple</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">//list.add(new Food());</span>
-
-        Object object <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//基于whiteboard将输入样例输入，要注意编写格式的转换</span>
+      <span class="token comment" spellcheck="true">//使用BufferedReader创建输入实例</span>
+      <span class="token comment" spellcheck="true">//使用Integer.parseInt转换参数格式</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">{</span>
+        minStack stack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">minStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        BufferedReader scanner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputStreamReader</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> N <span class="token operator">=</span> Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>scanner<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//输入操作，同时去除 具体操作和数字之间的空格</span>
+            <span class="token comment" spellcheck="true">//String[0]表示操作类型 String[1]表示参数</span>
+            String<span class="token punctuation">[</span><span class="token punctuation">]</span> operate <span class="token operator">=</span> scanner<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+            <span class="token keyword">if</span><span class="token punctuation">(</span>operate<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"push"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>operate<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>operate<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"pop"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>operate<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"getMin"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                stack<span class="token punctuation">.</span><span class="token function">getMin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        scanner<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p>在<code>testExtends</code>方法中，因为泛型中用的是<code>extends</code>，在向<code>list</code>中存放元素的时候，我们并不能确定<code>List</code>中的元素的具体类型，即可能是<code>Apple</code>也可能是<code>Banana</code>。因此调用<code>add</code>方法时，不论传入<code>new Apple()</code>还是<code>new Banana()</code>，都会出现编译错误。</p>
-<p>理解了<code>extends</code>之后，再看<code>super</code>就很容易理解了，即我们不能确定<code>testSuper</code>方法的参数中的泛型是<code>Fruit</code>的哪个父类，因此在调用<code>get</code>方法时只能返回<code>Object</code>类型。结合<code>extends</code>可见，在获取泛型元素时，使用<code>extends</code>获取到的是泛型中的上边界的类型(本例子中为Fruit),范围更小。</p>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>在使用泛型时，存取元素时用<code>super</code>,获取元素时，用<code>extends</code>。</p>
-<p>本文来源：<a target="_blank" rel="noopener" href="https://juejin.im/post/5c653fe06fb9a049e3089d88">https://juejin.im/post/5c653fe06fb9a049e3089d88</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -509,7 +569,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/06/java-ji-chu/java-fan-xing-zhong-de-shang-xia-xian-tong-pei-fu-extends-super/">https://danie10ne.github.io/2020/10/06/java-ji-chu/java-fan-xing-zhong-de-shang-xia-xian-tong-pei-fu-extends-super/</a>
+                    <a href="https://danie10ne.github.io/2020/10/07/shu-ju-jie-gou-yu-suan-fa/zhan/shi-xian-getmin-zhan/">https://danie10ne.github.io/2020/10/07/shu-ju-jie-gou-yu-suan-fa/zhan/shi-xian-getmin-zhan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -547,8 +607,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">Java基础</span>
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%A0%88/">
+                                    <span class="chip bg-color">栈</span>
                                 </a>
                             
                         </div>
@@ -594,24 +658,30 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/07/shu-ju-jie-gou-yu-suan-fa/zhan/shi-xian-getmin-zhan/">
+                <a href="/2020/10/07/wang-luo/io/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/55.jpg" class="responsive-img" alt="实现getMin栈">
+                        <img src="/medias/featureimages/62.jpg" class="responsive-img" alt="IO">
                         
-                        <span class="card-title">实现getMin栈</span>
+                        <span class="card-title">IO</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            实现getMin栈题目描述实现一个特殊功能的栈，在实现栈的基本功能的基础上，再实现返回栈中最小元素的操作。
-输入描述:第一行输入一个整数N，表示对栈进行的操作总数。
+                            IO1. 什么是IOIO简单理解就是用来传输的工具负责：输入/输出。
+在JDK中有针对不同IO需求的包，比如：
 
-下面N行每行输入一个字符串S，表示操作的种类。
+磁盘操作：Paths  Files
 
-如果S为"push"，
+向磁盘写入数据
+从磁盘中读数据
+
+
+字节操作：
+
+字节流输入操作InputStream 
                         
                     </div>
                     <div class="publish-info">
@@ -622,8 +692,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                    数据结构
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -633,12 +703,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A0%88/">
-                        <span class="chip bg-color">栈</span>
+                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">Java基础</span>
                     </a>
                     
                 </div>
@@ -652,19 +718,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/java-ji-he-lei/">
+                <a href="/2020/10/06/java-ji-chu/java-fan-xing-zhong-de-shang-xia-xian-tong-pei-fu-extends-super/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/41.jpg" class="responsive-img" alt="Java集合类">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Java泛型中的上下限通配符extends、super">
                         
-                        <span class="card-title">Java集合类</span>
+                        <span class="card-title">Java泛型中的上下限通配符extends、super</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            常用集合类、HashMap的实现原理、ConcurrentHashMap 的实现原理
+                            extends为上界通配符，就是指定上边界，super为下届通配符，就是指定下边界
                         
                     </div>
                     <div class="publish-info">
