@@ -463,30 +463,42 @@
 <h2 id="三、如何使用线程？"><a href="#三、如何使用线程？" class="headerlink" title="三、如何使用线程？"></a>三、如何使用线程？</h2><h3 id="1-如何构建线程（线程初始化）"><a href="#1-如何构建线程（线程初始化）" class="headerlink" title="1. 如何构建线程（线程初始化）"></a>1. 如何构建线程（线程初始化）</h3><p>new Thread过程中会调用Thread包里的init方法：</p>
 <p>由parent线程给线程对象分配空间<br>child线程同时也继承parent线程的基本信息：是否为Daemon、优先级、ThreadLocal等</p>
 <h3 id="2-使用线程的方法有三种"><a href="#2-使用线程的方法有三种" class="headerlink" title="2. 使用线程的方法有三种"></a>2. 使用线程的方法有三种</h3><h4 id="1-继承-Thread-类"><a href="#1-继承-Thread-类" class="headerlink" title="1. 继承 Thread 类"></a>1. 继承 Thread 类</h4><p>Thread类本质上是实现了Runnable接口的一个实例，代表一个线程的实例。启动线程的唯一方法就是调用Thread类的start()实例方法。start()方法是一个native方法，它将启动一个新线程，并执行run()方法。</p>
-<p>public class MyThread extends Thread {<br>    public void run() {<br>        System.out.println(“MyThread.run()”);<br>        }<br>} </p>
-<p>MyThread myThread1 = new MyThread();<br>myThread1.start();</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyThread</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>     
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"MyThread.run()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+
+MyThread myThread1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+myThread1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h4 id="2-实现-Runnable-接口"><a href="#2-实现-Runnable-接口" class="headerlink" title="2. 实现 Runnable 接口"></a>2. 实现 Runnable 接口</h4><p>如果自己的类已经继承了另一个类，就无法直接extends Thread，此时，可以实现一个Runnable接口。</p>
-<p>public class MyThread extends OtherClass implements Runnable {<br>    public void run() {<br>        System.out.println(“MyThread.run()”);<br>    }<br>}</p>
-<p>MyThread myThread1 = new MyThread();<br>myThread1.start();</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyThread</span> <span class="token keyword">extends</span> <span class="token class-name">OtherClass</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"MyThread.run()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>
+
+MyThread myThread1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+myThread1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h4 id="3-实现-Callable-接口"><a href="#3-实现-Callable-接口" class="headerlink" title="3. 实现 Callable 接口"></a>3. 实现 Callable 接口</h4><p>有返回值的任务必须实现Callable接口，无返回值的任务必须Runnable接口。</p>
 <p>执行Callable任务后，可以获取一个Future的对象，返回值通过 FutureTask 进行封装，在该对象上调用get可以获取到Callable任务返回的Object，再结合线程池接口ExecutorService就可以实现有返回结果的多线程了。</p>
-<pre><code>//创建一个线程池 
-ExecutorService pool = Executors.newFixedThreadPool(taskSize); 
-// 创建多个有返回值的任务 
-List&lt;Future&gt; list = new ArrayList&lt;Future&gt;(); 
-for (int i = 0; i &lt; taskSize; i++) { 
-    Callable c = new MyCallable(i + " "); 
-    // 执行任务并获取Future对象 
-    Future f = pool.submit(c); 
-    list.add(f); 
-} 
-// 关闭线程池 
-pool.shutdown(); 
-// 获取所有并发任务的运行结果 
-for (Future f : list) { 
-    // 从Future对象上获取任务的返回值，并输出到控制台 
-    System.out.println("res：" + f.get().toString()); 
-}</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//创建一个线程池 </span>
+ExecutorService pool <span class="token operator">=</span> Executors<span class="token punctuation">.</span><span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span>taskSize<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// 创建多个有返回值的任务 </span>
+List<span class="token operator">&lt;</span>Future<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Future<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> taskSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    Callable c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyCallable</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token comment" spellcheck="true">// 执行任务并获取Future对象 </span>
+    Future f <span class="token operator">=</span> pool<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> 
+<span class="token comment" spellcheck="true">// 关闭线程池 </span>
+pool<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// 获取所有并发任务的运行结果 </span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>Future f <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token comment" spellcheck="true">// 从Future对象上获取任务的返回值，并输出到控制台 </span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"res："</span> <span class="token operator">+</span> f<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span></code></pre>
 <h4 id="4-基于线程池的方式"><a href="#4-基于线程池的方式" class="headerlink" title="4.基于线程池的方式"></a>4.基于线程池的方式</h4><p>线程和数据库连接这些资源都是非常宝贵的资源。那么每次需要的时候创建，不需要的时候销毁，是非常浪费资源的。那么就可以使用缓存的策略，也就是使用线程池。(具体在线程池章节)</p>
 <h4 id="5-实现接口-VS-继承-Thread"><a href="#5-实现接口-VS-继承-Thread" class="headerlink" title="5. 实现接口 VS 继承 Thread"></a>5. 实现接口 VS 继承 Thread</h4><p>实现接口会更好一些，因为：<br>Java 不支持多重继承，因此继承了 Thread 类就无法继承其它类，但是可以实现多个接口；<br>类可能只要求可执行就行，继承整个 Thread 类开销过大。</p>
 <h2 id="四、如何终止线程"><a href="#四、如何终止线程" class="headerlink" title="四、如何终止线程"></a>四、如何终止线程</h2><h3 id="1-线程正常运行结束终止"><a href="#1-线程正常运行结束终止" class="headerlink" title="1. 线程正常运行结束终止"></a>1. 线程正常运行结束终止</h3><p>线程执行完run方法，无异常的情况下就会自动退出，终止线程。</p>
@@ -494,7 +506,19 @@ for (Future f : list) {
 <p>设置一个boolean类型的标志exit，并通过设置exit标志位为true或false，来控制while循环是否退出，exit为volatile类型，这样能够保证exit对所有线程可见且同步。</p>
 <h3 id="3-中断停止线程"><a href="#3-中断停止线程" class="headerlink" title="3. 中断停止线程"></a>3. 中断停止线程</h3><p><strong>1）线程处于阻塞状态：</strong>如使用了sleep、同步锁的wait、socket中的receiver、accept等方法时，会使线程处于阻塞状态。当调用线程的interrupt()方法时，Thread.interrupt()方法不会中断一个正在运行的线程，阻塞中的方法会抛出InterruptException异常。通过代码捕获该异常，然后break跳出循环状态，从而提早地终结被阻塞状态。</p>
 <p>通常很多人认为只要调用interrupt方法线程就会结束，实际上是错的， 一定要先捕获InterruptedException异常之后通过break来跳出循环，才能正常结束run方法。</p>
-<p>public class ThreadSafe extends Thread {<br>    public void run() {<br>        while (!isInterrupted()){ //非阻塞过程中通过判断中断标志来退出<br>            try{<br>                Thread.sleep(5*1000);//阻塞过程捕获中断异常来退出<br>            }catch(InterruptedException e){<br>                e.printStackTrace();<br>                break;//捕获到异常之后，执行break跳出循环<br>            }<br>        }<br>    }<br>}<br><strong>2）线程未处于阻塞状态：</strong>使用isInterrupted()判断线程的中断标志，来决定是否退出循环。当使用interrupt()方法时，中断标志就会置true，和使用自定义的标志来控制循环是一样的道理，但要明白中断一个线程只是为了引起该线程的注意，被中断线程可以决定如何应对中断 。**</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThreadSafe</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isInterrupted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//非阻塞过程中通过判断中断标志来退出</span>
+            <span class="token keyword">try</span><span class="token punctuation">{</span>
+                Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token operator">*</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//阻塞过程捕获中断异常来退出</span>
+            <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>InterruptedException e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//捕获到异常之后，执行break跳出循环</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>2）线程未处于阻塞状态：</strong>使用isInterrupted()判断线程的中断标志，来决定是否退出循环。当使用interrupt()方法时，中断标志就会置true，和使用自定义的标志来控制循环是一样的道理，但要明白中断一个线程只是为了引起该线程的注意，被中断线程可以决定如何应对中断 。**</p>
 <p>安全的终止线程：通过标识位和中断操作的方式使得线程有机会清理资源，而不是武断地将线程终止。</p>
 <h3 id="4-调用stop-方法（线程不安全）"><a href="#4-调用stop-方法（线程不安全）" class="headerlink" title="4. 调用stop()方法（线程不安全）"></a>4. 调用stop()方法（线程不安全）</h3><p>程序中可以直接使用thread.stop()来强行终止线程，thread.stop()调用之后，创建子线程的线程就会抛出ThreadDeatherror的错误，并且会释放子线程所持有的所有锁突然释放，被保护数据就有可能呈现不一致性。</p>
 <p>Thread.suspend, Thread.stop，Thread.sleep方法被终止使用原因</p>
