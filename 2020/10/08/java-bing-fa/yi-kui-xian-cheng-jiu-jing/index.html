@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java集合类, Danielone">
+    <meta name="keywords" content="一窥线程究竟, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java集合类 | Danielone</title>
+    <title>一窥线程究竟 | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/41.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/36.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java集合类</h1>
+                    <h1 class="description center-align post-title">一窥线程究竟</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">Java基础</span>
+                            <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                                <span class="chip bg-color">Java并发</span>
                             </a>
                         
                     </div>
@@ -411,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-06
+                    2020-10-08
                 </div>
                 
 
@@ -427,92 +427,106 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java集合类"><a href="#Java集合类" class="headerlink" title="Java集合类"></a>Java集合类</h1><h2 id="1-Collection-和-Collections-区别"><a href="#1-Collection-和-Collections-区别" class="headerlink" title="1. Collection 和 Collections 区别"></a>1. Collection 和 Collections 区别</h2><p>Collection是集合的接口，提供了多个通用的接口方法，供诸如list、set等实现。</p>
-<p>Collections是一个包装类，其内部的方法都为静态方法，因此不能被实例化，作为工具类使用。</p>
-<h2 id="2-常用集合类"><a href="#2-常用集合类" class="headerlink" title="2. 常用集合类"></a>2. 常用集合类</h2><h3 id="1）Set和List的区别"><a href="#1）Set和List的区别" class="headerlink" title="1）Set和List的区别"></a>1）Set和List的区别</h3><p><strong>共同点：</strong>都继承自Collection接口，都用来存储一组相同类型的元素</p>
-<p><strong>不同点：</strong></p>
-<ul>
-<li>list元素按顺序放入，即先来的排在前边且元素是可以重复的</li>
-<li>set元素没有放入顺序，且元素不可重复，所以set可以用来去重</li>
+                <h1 id="一窥线程究竟"><a href="#一窥线程究竟" class="headerlink" title="一窥线程究竟"></a>一窥线程究竟</h1><h2 id="一、-什么是线程？什么是进程？二者有什么区别？二者有什么联系？"><a href="#一、-什么是线程？什么是进程？二者有什么区别？二者有什么联系？" class="headerlink" title="一、 什么是线程？什么是进程？二者有什么区别？二者有什么联系？"></a>一、 什么是线程？什么是进程？二者有什么区别？二者有什么联系？</h2><h3 id="1-什么是进程？"><a href="#1-什么是进程？" class="headerlink" title="1. 什么是进程？"></a>1. 什么是进程？</h3><ul>
+<li>进程包括<strong>进程控制块PCB</strong>和<strong>用户地址空间</strong>，所有与进程有关的资源都存放在进程控制块PCB中，包含描述信息、控制信息、资源信息、CPU现场等。</li>
+<li><strong>进程是抢占处理机的调度单位，拥有独立完整的地址空间，线程属于某个进程，共享其资源。</strong></li>
 </ul>
-<h3 id="2）ArrayList-、LinkedList-和-Vector-的区别"><a href="#2）ArrayList-、LinkedList-和-Vector-的区别" class="headerlink" title="2）ArrayList 、LinkedList 和 Vector 的区别"></a>2）ArrayList 、LinkedList 和 Vector 的区别</h3><p><strong>共同点：</strong>ArrayList 和 LinkedList 和 Vector 是List的是三种实现。</p>
-<p><strong>不同点</strong></p>
-<p><strong>ArrayList：</strong>是一个<strong>大小可以改变的数组</strong>，随着数组内元素的增加，其大小将会动态的增加，通过set或者get方法来获取数组内的元素，其查找性能要优于链表，增删性能弱于链表。</p>
-<p><strong>LinkedList：</strong>是一个<strong>双向链表</strong>，增删操作很快，随机访问性能较差。LinkedList还实现了Queue接口，提供了队列相关的操作，比如poll、peek、offer。</p>
-<p><strong>Vector：</strong>与ArrayList类似，但是<strong>Vector是线程安全的</strong>，在没有多个线程共享同一个集合的情况下，建议使用ArrayList。Vector每次请求其大小双倍的空间，而ArrayList每次对size只增长50%。</p>
-<h3 id="4）Set如何保证元素不重复？"><a href="#4）Set如何保证元素不重复？" class="headerlink" title="4）Set如何保证元素不重复？"></a>4）Set如何保证元素不重复？</h3><p>在Java中Set分为两种：TreeSet和HashSet</p>
-<p><strong>TreeSet：</strong>TreeSet的底层是通过TreeMap（红黑树）来实现的，Treeset中的数据是自动排好序的，红黑树实质是一个二叉平衡搜索树，每个节点的左右子树高度不能超过较矮那棵的一倍。</p>
-<p>在TreeSet中插入新元素时，通过调用compareTo()方法来判断元素是否重复，且不允许放入null值。</p>
-<p><strong>HashSet：</strong>HashSet的底层是通过HashMap来实现的，HashSet中的数据是无序的，可以放入null，但只能放入一个null。插入新元素时，首先计算新元素的hashcode，再通过扰动计算和按位计算得到此元素在HashMap存储结构中的存放位置，如果此位置为空，则添加此元素，如果不为空，则通过重写了的equal()方法，判断当前插入元素是否与已存在元素相等，如果不相等则添加新元素，相等则不添加。</p>
-<h3 id="5）LinkedHashMap"><a href="#5）LinkedHashMap" class="headerlink" title="5）LinkedHashMap"></a>5）LinkedHashMap</h3><p>继承自HashMap，因此具有快速查找的特性，同时内部维护了一个双向链表，用来维护LRU顺序或者插入顺序。</p>
-<p>LinkedHashMap 最重要的是以下用于维护顺序的函数，它们会在 put、get 等方法中调用。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">afterNodeAccess</span><span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span> 
-<span class="token keyword">void</span> <span class="token function">afterNodeInsertion</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> evict<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span></code></pre>
-<p><strong>afterNodeAccess()</strong></p>
-<p>当一个节点被访问时，如果 accessOrder 为 true，则会将该节点移到链表尾部。也就是说指定为 LRU 顺序之后，在 每次访问一个节点时，会将这个节点移到链表尾部，保证链表尾部是最近访问的节点，那么链表首部就是最近最久未使用的节点。</p>
-<p><strong>afterNodeInsertion()</strong></p>
-<p>在 put 等操作之后执行，当 removeEldestEntry() 方法返回 true 时会移除最晚的节点，也就是链表首部节点 ﬁrst。</p>
-<p><strong>使用LinkedHashMap实现LRU</strong></p>
-<ul>
-<li>设定最大缓存空间 MAX_ENTRIES 为 3</li>
-<li>accessOrder = true//开启 LRU 顺序</li>
-<li>覆盖 removeEldestEntry()方法，在节点数大于MAX_ENTRIES时会将最近最久未使用的数据移除</li>
+<p><strong>进程特点</strong></p>
+<p>进程独占内存空间，保存各自运行状态，相互间不干扰且可以互相切换，为并发处理任务提供可能。</p>
+<p>一个进程中可以包含若干个线程。</p>
+<h3 id="2-什么是线程？"><a href="#2-什么是线程？" class="headerlink" title="2. 什么是线程？"></a>2. 什么是线程？</h3><ul>
+<li><strong>线程由堆栈寄存器（存储某线程的局部变量）、程序计数器和线程控制块组成。</strong></li>
+<li><strong>线程属于某个进程，共享同一进程资源。</strong></li>
 </ul>
-<p>通过移除最近最久未使用的节点，从而保证缓存空间足够，并且缓存的数据都是热点数据。</p>
-<h2 id="3-HashMap的实现原理"><a href="#3-HashMap的实现原理" class="headerlink" title="3. HashMap的实现原理"></a>3. HashMap的实现原理</h2><p><strong>JDK1.7</strong></p>
-<p>HashMap通过<strong>数组+链表</strong>存储数据，内部包含一个Entry类的数组，Entry类包含四个字段，<code>k、v、next、hash</code>来实现数组和链表的结构存储数据。</p>
-<p><strong>插入put：</strong></p>
-<p>在插入新元素时，不同元素的hash值可能相同，也就意味着hash冲突，在1.7版本中解决hash冲突的办法是使用<strong>拉链法</strong>，新插入的元素插入到对应entry链表的头部（头插法），之所以采用头插法是新插入的元素可能更容易被查找。</p>
-<p><strong>常见的解决碰撞的方法</strong></p>
-<ul>
-<li><p>开放定址法</p>
-<p>开放定址法就是一旦发生了冲突，就去寻找下一个空的散列地址，只要散列表足够大，空的散列地址总能找到，并将记录存入。</p>
-</li>
-<li><p>链地址法</p>
-<p>将哈希表的每个单元作为链表的头结点，所有哈希地址为i的元素构成一个同义词链表。即发生冲突时就把该关键字链在以该单元为头结点的链表的尾部。</p>
-</li>
-<li><p>再哈希法</p>
-<p>当哈希地址发生冲突用其他的函数计算另一个哈希函数地址，直到冲突不再产生为止。</p>
-</li>
-<li><p>建立公共溢出区</p>
-<p>将哈希表分为基本表和溢出表两部分，发生冲突的元素都放入溢出表中。</p>
-</li>
+<p><strong>线程特点</strong></p>
+<p>线程共享进程内存资源，相互间切换更快捷，支持更细粒度的任务控制，使进程内的子任务得以并发执行。</p>
+<h3 id="3-进程和线程的区别"><a href="#3-进程和线程的区别" class="headerlink" title="3. 进程和线程的区别"></a>3. 进程和线程的区别</h3><ul>
+<li>线程不能看作独立应用，而进程可以看作独立应用</li>
+<li>进程有独立的地址空间， 相互不影响，线程只是进程的不同执行路径</li>
+<li>线程有自己的堆栈，但线程没有独立的地址空间，多进程的程序比多线程程序健壮</li>
+<li>进程的切换比线程的切换开销大</li>
 </ul>
-<p><strong>查找get：</strong></p>
-<ul>
-<li>计算键值对所在的桶Entry</li>
-<li>在链表上顺序查找，时间复杂度与链表的长度成正比，最坏时间复杂度为O(N)</li>
+<h3 id="4-进程和线程的关系"><a href="#4-进程和线程的关系" class="headerlink" title="4. 进程和线程的关系"></a>4. 进程和线程的关系</h3><ul>
+<li>Java对操作系统提供的功能进行封装，包括进程和线程</li>
+<li>运行一个程序会产生一个进程，进程包含至少一个线程</li>
+<li>每个进程对应一个JVM实例，每一个JVM实例对应唯一的一个堆。多个线程共享JVM里的堆，每个线程都有一个私有的栈</li>
+<li>Java采用单线程编程模型，程序会自动创建主线程，即程序默认创建一个主线程，因此要将耗时的操作放在子线程中执行，避免阻塞主线程</li>
+<li>主线程可以创建子线程，原则上要后于子线程完成执行，需要执行各种关闭动作</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> hash <span class="token operator">=</span> <span class="token function">hash</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//计算hash</span>
-<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token function">indexFor</span><span class="token punctuation">(</span>hash<span class="token punctuation">,</span> table<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//确定桶下标：按位与取模</span></code></pre>
-<p><strong>JDK1.8</strong></p>
-<p>同样使用数组和链表存储数据，但是在一个桶存储的链表长度大于 8 时，会将链表转换为红黑树。这样做是为了避免在链表长度过长时，将遍历链表元素的时间复杂度从O(N)降为O(logN)。</p>
-<p><strong>扩容</strong></p>
-<p>与扩容相关的参数有：：capacity、size、threshold 和 load_factor</p>
-<p>当HashMap存储的元素个数超过threshold过载时<code>threshold = loadFactor * capacity</code>，会触发扩容，且<strong>自动双倍扩容，扩容后重新计算每个键值对位置。</strong></p>
-<p><code>capacity</code>默认为16，且capacity 必须保证为 2 的 n 次方，每次扩容时，capacity 为原来的两倍。size表示当前共有多少个K-V对，当 size 大于等于 threshold 就必须进行扩容操作。loadFactor是负载因子，负载因子一般定为0.75。</p>
-<ul>
-<li><p>为什么负载因子一般定为0.75</p>
-<p>在计算hashmap是否达到扩容标准时，负载因子0.75 = 3/4，与capacity的乘积正好可以为整数。</p>
-</li>
-<li><p>为什么容量必须保证为 2 的 n 次方？</p>
-<p>因为hashmap通过取模获取元素的entry位置时，是通过按位与的方式实现快速查找Entry位置的，而要使得按位与和取余等价则必须保证容量是 2 的 n 次方。</p>
-<pre class=" language-java"><code class="language-java">X <span class="token operator">%</span> <span class="token number">2</span><span class="token operator">^</span>n <span class="token operator">=</span> X <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">^</span>n – <span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//X表示hash值</span></code></pre>
-</li>
-<li><p>为什么按位与取模？</p>
-<p>这样做的好处是相比于使用“%”取模，不需要将hash转为int计算，节省计算成本，同时按位与的话也避免了复杂的正负计算，因为hash值为int类型</p>
-</li>
-</ul>
-<p><strong>多线程情况下，hashmap扩容会导致死循环问题，出现环形链表</strong></p>
-<h3 id="HashMap多线程操作导致死循环问题"><a href="#HashMap多线程操作导致死循环问题" class="headerlink" title="HashMap多线程操作导致死循环问题"></a>HashMap多线程操作导致死循环问题</h3><p>进行 put 操作会导致 HashMap 死循环，原因在于 HashMap 的扩容 resize()方法。由于扩容是新建一个数组，复制原数据到数组。由于数组下标挂有链表，所以需要复制链表，但是多线程操作有可能导致<strong>环形链表</strong>。</p>
-<h2 id="5-ConcurrentHashMap-的实现原理"><a href="#5-ConcurrentHashMap-的实现原理" class="headerlink" title="5. ConcurrentHashMap 的实现原理"></a>5. ConcurrentHashMap 的实现原理</h2><p><strong>JDK1.7</strong></p>
-<p>在桶数组的基础上，加入了<strong>分段锁</strong>，将数据按分成一段一段的存储，然后给每一段数据分配一个锁，当一个线程访问占用某一段数据的锁，访问此段数据时，其他分段的数据可以被其他线程访问，实现线程安全。</p>
-<p>其核心类为 Segment，它继承自<strong>重入锁 ReentrantLock</strong>，并发度与 Segment 数量相等，默认的并发级别是16。</p>
-<p><strong>JDK1.8</strong></p>
-<p>使用<strong>CAS操作</strong>支持更高的并发量，在CAS操作失败时，使用<strong>内置锁synchronized</strong>，且在链表长度过长时，将转为红黑树来存储数据。</p>
-<h2 id="6-HashMap的长度为什么是2的幂次方"><a href="#6-HashMap的长度为什么是2的幂次方" class="headerlink" title="6. HashMap的长度为什么是2的幂次方"></a>6. HashMap的长度为什么是2的幂次方</h2><p><strong>为了能让 HashMap 存取高效，尽量较少碰撞，也就是要尽量把数据分配均匀</strong></p>
-<p>Hash 值的范围值-2147483648到2147483647，前后加起来大概40亿的映射空间，只要哈希函数映射得比较均匀松散，一般应用是很难出现碰撞的。但问题是一个40亿长度的数组，内存是放不下的。所以这个散列值是不能直接拿来用的。用之前还要先做对数组的长度取模运算，得到的余数才能用来要存放的位置也就是对应的数组下标。这个数组下标的计算方法是“ (n - 1) &amp; hash ”。（n代表数组长度）。这也就解释了 HashMap 的长度为什么是2的幂次方。</p>
-<p><strong>这个算法应该如何设计呢</strong>？<br>我们首先可能会想到采用%取余的操作来实现。但是，重点来了：“<strong>取余(%)操作中如果除数是2的幂次则等价于与其除数减1的与(&amp;)操作（也就是说 hash%length==hash&amp;(length-1)的前提是 length 是2的 n 次方；）。” 并且 采用二进制位操作 &amp;，相对于%能够提高运算效率</strong>，这就解释了 HashMap 的长度为什么是2的幂次方。</p>
+<h2 id="二、线程的生命周期（状态转换）"><a href="#二、线程的生命周期（状态转换）" class="headerlink" title="二、线程的生命周期（状态转换）"></a>二、线程的生命周期（状态转换）</h2><p><img src="https://i.loli.net/2020/10/08/TojO6syl39Y1i4K.png" alt="Screen Shot 2020-10-08 at 9.52.49 PM.png"></p>
+<h3 id="1-初始状态（New）"><a href="#1-初始状态（New）" class="headerlink" title="1. 初始状态（New）"></a>1. 初始状态（New）</h3><p>创建后尚未启动。</p>
+<h3 id="2-可运行（Runnable）"><a href="#2-可运行（Runnable）" class="headerlink" title="2. 可运行（Runnable）"></a>2. 可运行（Runnable）</h3><p>可能正在运行，也可能正在等待 CPU 时间片，包含了操作系统线程状态中的 Running 和 Ready。</p>
+<h3 id="3-阻塞（Blocked）"><a href="#3-阻塞（Blocked）" class="headerlink" title="3. 阻塞（Blocked）"></a>3. 阻塞（Blocked）</h3><p>等待获取一个排它锁，如果其线程释放了锁就会结束此状态。</p>
+<h3 id="4-无限期等待（Waiting）"><a href="#4-无限期等待（Waiting）" class="headerlink" title="4. 无限期等待（Waiting）"></a>4. 无限期等待（Waiting）</h3><p>等待其它线程显式地唤醒，否则不会被分配 CPU 时间片。</p>
+<h3 id="5-超时等待（Time-Waiting）"><a href="#5-超时等待（Time-Waiting）" class="headerlink" title="5. 超时等待（Time Waiting）"></a>5. 超时等待（Time Waiting）</h3><p>在指定时间自行返回。</p>
+<h3 id="6-终止状态"><a href="#6-终止状态" class="headerlink" title="6. 终止状态"></a>6. 终止状态</h3><p>表示当前线程执行完毕或者产生异常结束。</p>
+<h2 id="三、如何使用线程？"><a href="#三、如何使用线程？" class="headerlink" title="三、如何使用线程？"></a>三、如何使用线程？</h2><h3 id="1-如何构建线程（线程初始化）"><a href="#1-如何构建线程（线程初始化）" class="headerlink" title="1. 如何构建线程（线程初始化）"></a>1. 如何构建线程（线程初始化）</h3><p>new Thread过程中会调用Thread包里的init方法：</p>
+<p>由parent线程给线程对象分配空间<br>child线程同时也继承parent线程的基本信息：是否为Daemon、优先级、ThreadLocal等</p>
+<h3 id="2-使用线程的方法有三种"><a href="#2-使用线程的方法有三种" class="headerlink" title="2. 使用线程的方法有三种"></a>2. 使用线程的方法有三种</h3><h4 id="1-继承-Thread-类"><a href="#1-继承-Thread-类" class="headerlink" title="1. 继承 Thread 类"></a>1. 继承 Thread 类</h4><p>Thread类本质上是实现了Runnable接口的一个实例，代表一个线程的实例。启动线程的唯一方法就是调用Thread类的start()实例方法。start()方法是一个native方法，它将启动一个新线程，并执行run()方法。</p>
+<p>public class MyThread extends Thread {<br>    public void run() {<br>        System.out.println(“MyThread.run()”);<br>        }<br>} </p>
+<p>MyThread myThread1 = new MyThread();<br>myThread1.start();</p>
+<h4 id="2-实现-Runnable-接口"><a href="#2-实现-Runnable-接口" class="headerlink" title="2. 实现 Runnable 接口"></a>2. 实现 Runnable 接口</h4><p>如果自己的类已经继承了另一个类，就无法直接extends Thread，此时，可以实现一个Runnable接口。</p>
+<p>public class MyThread extends OtherClass implements Runnable {<br>    public void run() {<br>        System.out.println(“MyThread.run()”);<br>    }<br>}</p>
+<p>MyThread myThread1 = new MyThread();<br>myThread1.start();</p>
+<h4 id="3-实现-Callable-接口"><a href="#3-实现-Callable-接口" class="headerlink" title="3. 实现 Callable 接口"></a>3. 实现 Callable 接口</h4><p>有返回值的任务必须实现Callable接口，无返回值的任务必须Runnable接口。</p>
+<p>执行Callable任务后，可以获取一个Future的对象，返回值通过 FutureTask 进行封装，在该对象上调用get可以获取到Callable任务返回的Object，再结合线程池接口ExecutorService就可以实现有返回结果的多线程了。</p>
+<pre><code>//创建一个线程池 
+ExecutorService pool = Executors.newFixedThreadPool(taskSize); 
+// 创建多个有返回值的任务 
+List&lt;Future&gt; list = new ArrayList&lt;Future&gt;(); 
+for (int i = 0; i &lt; taskSize; i++) { 
+    Callable c = new MyCallable(i + " "); 
+    // 执行任务并获取Future对象 
+    Future f = pool.submit(c); 
+    list.add(f); 
+} 
+// 关闭线程池 
+pool.shutdown(); 
+// 获取所有并发任务的运行结果 
+for (Future f : list) { 
+    // 从Future对象上获取任务的返回值，并输出到控制台 
+    System.out.println("res：" + f.get().toString()); 
+}</code></pre>
+<h4 id="4-基于线程池的方式"><a href="#4-基于线程池的方式" class="headerlink" title="4.基于线程池的方式"></a>4.基于线程池的方式</h4><p>线程和数据库连接这些资源都是非常宝贵的资源。那么每次需要的时候创建，不需要的时候销毁，是非常浪费资源的。那么就可以使用缓存的策略，也就是使用线程池。(具体在线程池章节)</p>
+<h4 id="5-实现接口-VS-继承-Thread"><a href="#5-实现接口-VS-继承-Thread" class="headerlink" title="5. 实现接口 VS 继承 Thread"></a>5. 实现接口 VS 继承 Thread</h4><p>实现接口会更好一些，因为：<br>Java 不支持多重继承，因此继承了 Thread 类就无法继承其它类，但是可以实现多个接口；<br>类可能只要求可执行就行，继承整个 Thread 类开销过大。</p>
+<h2 id="四、如何终止线程"><a href="#四、如何终止线程" class="headerlink" title="四、如何终止线程"></a>四、如何终止线程</h2><h3 id="1-线程正常运行结束终止"><a href="#1-线程正常运行结束终止" class="headerlink" title="1. 线程正常运行结束终止"></a>1. 线程正常运行结束终止</h3><p>线程执行完run方法，无异常的情况下就会自动退出，终止线程。</p>
+<h3 id="2-使用退出标志位退出线程"><a href="#2-使用退出标志位退出线程" class="headerlink" title="2. 使用退出标志位退出线程"></a>2. 使用退出标志位退出线程</h3><p>线程的run()方法执行完，线程就会正常结束，但是对于线程的伺服线程，它们需要长时间的运行，只有在外部某些条件满足的情况下，才能关闭这些线程。</p>
+<p>设置一个boolean类型的标志exit，并通过设置exit标志位为true或false，来控制while循环是否退出，exit为volatile类型，这样能够保证exit对所有线程可见且同步。</p>
+<h3 id="3-中断停止线程"><a href="#3-中断停止线程" class="headerlink" title="3. 中断停止线程"></a>3. 中断停止线程</h3><p><strong>1）线程处于阻塞状态：</strong>如使用了sleep、同步锁的wait、socket中的receiver、accept等方法时，会使线程处于阻塞状态。当调用线程的interrupt()方法时，Thread.interrupt()方法不会中断一个正在运行的线程，阻塞中的方法会抛出InterruptException异常。通过代码捕获该异常，然后break跳出循环状态，从而提早地终结被阻塞状态。</p>
+<p>通常很多人认为只要调用interrupt方法线程就会结束，实际上是错的， 一定要先捕获InterruptedException异常之后通过break来跳出循环，才能正常结束run方法。</p>
+<p>public class ThreadSafe extends Thread {<br>    public void run() {<br>        while (!isInterrupted()){ //非阻塞过程中通过判断中断标志来退出<br>            try{<br>                Thread.sleep(5*1000);//阻塞过程捕获中断异常来退出<br>            }catch(InterruptedException e){<br>                e.printStackTrace();<br>                break;//捕获到异常之后，执行break跳出循环<br>            }<br>        }<br>    }<br>}<br><strong>2）线程未处于阻塞状态：</strong>使用isInterrupted()判断线程的中断标志，来决定是否退出循环。当使用interrupt()方法时，中断标志就会置true，和使用自定义的标志来控制循环是一样的道理，但要明白中断一个线程只是为了引起该线程的注意，被中断线程可以决定如何应对中断 。**</p>
+<p>安全的终止线程：通过标识位和中断操作的方式使得线程有机会清理资源，而不是武断地将线程终止。</p>
+<h3 id="4-调用stop-方法（线程不安全）"><a href="#4-调用stop-方法（线程不安全）" class="headerlink" title="4. 调用stop()方法（线程不安全）"></a>4. 调用stop()方法（线程不安全）</h3><p>程序中可以直接使用thread.stop()来强行终止线程，thread.stop()调用之后，创建子线程的线程就会抛出ThreadDeatherror的错误，并且会释放子线程所持有的所有锁突然释放，被保护数据就有可能呈现不一致性。</p>
+<p>Thread.suspend, Thread.stop，Thread.sleep方法被终止使用原因</p>
+<p>因为调用这些方法会使线程在未正常结束之前, 被强制终止。<br>这可能带来完全预料不到的严重后果比如会带着自己所持有的锁而永远的休眠，迟迟不归还锁等。</p>
+<h3 id="5-start与run区别"><a href="#5-start与run区别" class="headerlink" title="5. start与run区别"></a>5. start与run区别</h3><p>start()方法来启动线程，真正实现了多线程运行。这时无需等待run方法体代码执行完毕，可以直接继续执行下面的代码。</p>
+<p>通过调用Thread类的start()方法来启动一个线程， 这时此线程是处于就绪状态， 并没有运行。</p>
+<p>方法run()称为线程体，它包含了要执行的这个线程的内容，线程就进入了运行状态，开始运行run函数当中的代码。 Run方法运行结束， 此线程终止。然后CPU再调度其它线程。</p>
+<h2 id="五、线程的基本方法"><a href="#五、线程的基本方法" class="headerlink" title="五、线程的基本方法"></a>五、线程的基本方法</h2><h3 id="1-等待-通知相关方法"><a href="#1-等待-通知相关方法" class="headerlink" title="1. 等待/通知相关方法"></a>1. 等待/通知相关方法</h3><p>join()方法</p>
+<p>如果线程A调用了线程B的Thread.join()，则线程A需要等待线程B结束之后再继续执行。</p>
+<p>为什么要使用Thread.join()？</p>
+<p>很多情况下，主线程生成并启动了子线程，需要用到子线程返回的结果，也就是需要主线程需要在子线程结束后再结束，这时候就要用到 join() 方法。</p>
+<p>线程唤醒notify()</p>
+<p>唤醒在此对象监视器上等待的一个线程，使其从wait() 方法返回，前提是该被唤醒的线程获取了对象的锁，才能继续执行被唤醒的线程，被唤醒的线程将以常规方式与在该对象上主动同步的其他所有线程进行竞争。</p>
+<p>notifyAll()</p>
+<p>唤醒在此对象监视器上等待的所有线程。</p>
+<p>线程等待wait()</p>
+<p>如果线程获取对象锁失败，就要调用该方法进入WAITING状态，只有等待另外线程的通知或被中断才会返回，需要注意的是调用wait()方法后，会释放对象的锁。因此，wait方法一般用在同步方法或同步代码块中。</p>
+<p>wait(long)：超时等待，如果等待超时后没有通知就返回（毫秒）。</p>
+<p>wait(long, int)：更细粒度的超时等待（纳秒）。</p>
+<p>java.util.concurrent 类库中提供了 Condition 类来实现线程之间的协调，可以在 Condition 上调用 await() 方法使线程等待，其它线程调用 signal() 或 signalAll() 方法唤醒等待的线程。</p>
+<p>wait() 这种等待方式，await() 可以指定等待的条件，因此更加灵活。</p>
+<h3 id="2-线程的sleep、中断、让步方法"><a href="#2-线程的sleep、中断、让步方法" class="headerlink" title="2. 线程的sleep、中断、让步方法"></a>2. 线程的sleep、中断、让步方法</h3><p>线程睡眠sleep(long)</p>
+<p>sleep导致当前线程休眠<br>sleep不会释放当前占有的锁<br>sleep(long)会导致线程进入TIMED-WATING状态，而wait()方法会导致当前线程进入WATING状态<br>wait() 和 sleep() 的区别</p>
+<p>wait() 是 Object 的方法，而 sleep() 是 Thread 的静态方法<br>wait() 会释放锁，sleep() 不会。<br>线程中断interrupt()</p>
+<p>调用interrupt()方法并不会中断一个正在运行的线程。<br>处于Running状态的线程并不会因为被中断而被终止，仅仅改变了内部维护的中断标识位而已。<br>需要进一步处理中断导致的异常或者中断标志位来安全的终止线程。<br>线程让步yield()</p>
+<p>yield会使当前线程让出CPU执行时间片，与其他线程一起重新竞争CPU时间片。<br>一般情况下，优先级高的线程有更大的可能性成功竞争得到CPU时间片，但这又不是绝对的，有的操作系统对线程优先级并不敏感。</p>
+<h2 id="六、线程本地存储-ThreadLocal"><a href="#六、线程本地存储-ThreadLocal" class="headerlink" title="六、线程本地存储 ThreadLocal"></a>六、线程本地存储 ThreadLocal</h2><p>本质上是一个以ThreadLocal为键、任意对象为值的Hashmap存储结构</p>
+<h3 id="1-ThreadLocal的作用"><a href="#1-ThreadLocal的作用" class="headerlink" title="1. ThreadLocal的作用"></a>1. ThreadLocal的作用</h3><p>提供线程内的局部变量，这种变量在线程的生命周期内起作用，减少同一个线程内多个函数或者组件之间一些公共变量的传递的复杂度。</p>
+<p>通俗的解释就是，如果代码中所需要的数据必须与其他代码共享，就尝试放在一个线程中，存储起来（ThreadLocal），这样共享数据的可见范围限制在同一个线程之内，无须同步也能保证线程之间不出现数据争用的问题，减少同步带来的额外开销。</p>
+<h3 id="2-如何使用ThreadLocal？"><a href="#2-如何使用ThreadLocal？" class="headerlink" title="2. 如何使用ThreadLocal？"></a>2. 如何使用ThreadLocal？</h3><p>每个 Thread 都有一个 ThreadLocal.ThreadLocalMap 对象。</p>
+<p>当调用一个 ThreadLocal 的 set(T value) 方法时，先得到当前线程的 ThreadLocalMap 对象，然后将 ThreadLocal-value 键值对插入到该 Map 中，get() 方法类似。</p>
+<h3 id="3-使用ThreadLocal注意事项"><a href="#3-使用ThreadLocal注意事项" class="headerlink" title="3. 使用ThreadLocal注意事项"></a>3. 使用ThreadLocal注意事项</h3><p>在一些场景 (尤其是使用线程池) 下，由于 ThreadLocal.ThreadLocalMap 的底层数据结构导致 ThreadLocal 有内存泄漏的情况，应该尽可能在每次使用 ThreadLocal 后手动调用 remove()，以避免出现 ThreadLocal 经典的内存泄漏甚至是造成自身业务混乱的风险。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -556,7 +570,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/06/java-ji-chu/java-ji-he-lei/">https://danie10ne.github.io/2020/10/06/java-ji-chu/java-ji-he-lei/</a>
+                    <a href="https://danie10ne.github.io/2020/10/08/java-bing-fa/yi-kui-xian-cheng-jiu-jing/">https://danie10ne.github.io/2020/10/08/java-bing-fa/yi-kui-xian-cheng-jiu-jing/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -594,8 +608,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">Java基础</span>
+                                <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                                    <span class="chip bg-color">Java并发</span>
                                 </a>
                             
                         </div>
@@ -637,29 +651,32 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/java-fan-xing-zhong-de-shang-xia-xian-tong-pei-fu-extends-super/">
+                <a href="/2020/10/08/java-bing-fa/yi-kui-xian-cheng-jiu-jing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Java泛型中的上下限通配符extends、super">
+                        <img src="/medias/featureimages/36.jpg" class="responsive-img" alt="一窥线程究竟">
                         
-                        <span class="card-title">Java泛型中的上下限通配符extends、super</span>
+                        <span class="card-title">一窥线程究竟</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            extends为上界通配符，就是指定上边界，super为下届通配符，就是指定下边界
+                            一窥线程究竟一、 什么是线程？什么是进程？二者有什么区别？二者有什么联系？1. 什么是进程？
+进程包括进程控制块PCB和用户地址空间，所有与进程有关的资源都存放在进程控制块PCB中，包含描述信息、控制信息、资源信息、CPU现场等。
+进程是抢
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -672,11 +689,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Java基础</span>
+                    <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                        <span class="chip bg-color">Java并发</span>
                     </a>
                     
                 </div>
@@ -690,24 +708,25 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/junit/">
+                <a href="/2020/10/08/java-bing-fa/java-suo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="JUnit使用">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Java 锁">
                         
-                        <span class="card-title">JUnit使用</span>
+                        <span class="card-title">Java 锁</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JUnit是一个Java语言的单元测试框架，JUnit 促进了“先测试后编码”的理念，强调建立测试数据的一段代码，可以先测试，然后再应用。
+                            Java 锁1. 重入锁ReentrantLock（互斥锁、可重入锁）1）简介
+ReentantLock实现了Lock接口，是一种可重入锁，除了能完成synchronized所能完成的所有工作外，提供了诸如可响应中断锁、可轮询锁请求、定时锁
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-08
                             </span>
                         <span class="publish-author">
                             
@@ -724,8 +743,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Java基础</span>
+                    <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                        <span class="chip bg-color">Java并发</span>
                     </a>
                     
                 </div>

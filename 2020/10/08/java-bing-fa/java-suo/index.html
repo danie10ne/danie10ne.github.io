@@ -1,0 +1,1069 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java 锁, Danielone">
+    <meta name="description" content="Stay Hungry Stay Foolish">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java 锁 | Danielone</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.1.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Danielone</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Danielone</div>
+        <div class="logo-desc">
+            
+            Stay Hungry Stay Foolish
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java 锁</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                                <span class="chip bg-color">Java并发</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-08
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Java-锁"><a href="#Java-锁" class="headerlink" title="Java 锁"></a>Java 锁</h2><h3 id="1-重入锁ReentrantLock（互斥锁、可重入锁）"><a href="#1-重入锁ReentrantLock（互斥锁、可重入锁）" class="headerlink" title="1. 重入锁ReentrantLock（互斥锁、可重入锁）"></a>1. 重入锁ReentrantLock（互斥锁、可重入锁）</h3><p><strong>1）简介</strong></p>
+<p><strong>ReentantLock实现了Lock接口，是一种可重入锁</strong>，除了能完成synchronized所能完成的所有工作外，提供了诸如可响应中断锁、可轮询锁请求、定时锁等避免多线程死锁的方法。</p>
+<p><strong>2）公平取锁</strong></p>
+<p><strong>公平锁指的是锁的分配机制是公平的，通常先判断锁是否有前驱节点，等待前驱线程获取并释放锁之后方可继续获取锁。</strong></p>
+<p>ReentrantLock在构造函数中提供了是否公平锁的初始化方式来定义公平锁。</p>
+<p><strong>3）非公平锁</strong></p>
+<p><strong>JVM按随机、就近原则分配锁的机制则称为不公平锁，只要CAS设置同步状态成功就表示获取锁成功，</strong>ReentrantLock默认为非公平锁。<strong>非公平锁实际执行的效率要远远超出公平锁，除非程序有特殊需要，否则默认非公平锁的分配机制。</strong></p>
+<p><strong>3）使用ReentantLock：</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LockExample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> Lock lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//不要将获取锁过程放在try里，防止发生异常时，导致锁无故释放</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 确保释放锁，从而避免发生死锁。</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="2-Synchronized同步锁（互斥锁、可重入锁）"><a href="#2-Synchronized同步锁（互斥锁、可重入锁）" class="headerlink" title="2. Synchronized同步锁（互斥锁、可重入锁）"></a>2. Synchronized同步锁（互斥锁、可重入锁）</h3><p>synchronized它可以把任意一个非NULL的对象当作锁，<strong>属于独占式的悲观锁，同时属于可重入锁。</strong></p>
+<ul>
+<li><strong>synchronized同步代码块</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li><strong>synchronized同步方法</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">func</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li><strong>synchronized同步类</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>SynchronizedExample<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li><strong>同步静态方法</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>Synchronized如何实现可重入？</strong></p>
+<p><strong>每个锁关联一个线程持有者和一个计数器，当线程获得锁，则计数器加1，</strong>其它线程请求该锁将被阻塞，如果持有锁的线程再次请求这个锁，就可以再次拿到这个锁，同时计数器会递增，<strong>当线程退出Synchronized同步方法或同步块，计数器减1，如果计数器为0，则表示线程释放该锁。</strong></p>
+<h3 id="3-锁和同步的区别（ReentrantLock和Synchronized的区别）"><a href="#3-锁和同步的区别（ReentrantLock和Synchronized的区别）" class="headerlink" title="3. 锁和同步的区别（ReentrantLock和Synchronized的区别）"></a>3. 锁和同步的区别（ReentrantLock和Synchronized的区别）</h3><ul>
+<li><strong>锁的实现</strong><br>synchronized 是 JVM 实现的，而 ReentrantLock 是 JDK 实现的。</li>
+<li><strong>性能</strong><br>新版本 Java 对 synchronized 进行了很多优化，例如自旋锁等，synchronized 与 ReentrantLock 大致相同。</li>
+<li><strong>等待可中断</strong><br>当持有锁的线程长期不释放锁的时候，正在等待的线程可以选择放弃等待，改为处理其他事情。<br>ReentrantLock 可中断，而 synchronized 不行。</li>
+<li><strong>公平锁</strong><br>公平锁是指多个线程在等待同一个锁时，必须按照申请锁的时间顺序来依次获得锁。<br>synchronized 中的锁是非公平的，ReentrantLock 默认情况下也是非公平的，但是也可以是公平的。</li>
+<li><strong>锁绑定多个条件</strong><br>一个 ReentrantLock 可以同时绑定多个 Condition 对象。</li>
+</ul>
+<h4 id="使用选择"><a href="#使用选择" class="headerlink" title="使用选择"></a>使用选择</h4><p>除非需要使用 ReentrantLock 的高级功能，否则<strong>优先使用 synchronized。这是因为synchronized 是 JVM 实现的一 种锁机制，JVM 原生地支持它，而 ReentrantLock 不是所有的 JDK 版本都支持。并且使用 synchronized 不用担心没有释放锁而导致死锁问题， synchronized会自动释放锁， JVM 会确保锁的释放。</strong></p>
+<h3 id="4-读写锁（支持重进入的共享锁）"><a href="#4-读写锁（支持重进入的共享锁）" class="headerlink" title="4. 读写锁（支持重进入的共享锁）"></a>4. 读写锁（支持重进入的共享锁）</h3><h4 id="1）-简介"><a href="#1）-简介" class="headerlink" title="1） 简介"></a>1） 简介</h4><p><strong>读写锁在同一时刻可以允许多个读线程访问，但是在写线程访问时，所有的读线程和其他写线程均被阻塞。</strong>读写锁维护了一对锁，一个读锁和一个写锁，通过分离读锁和写锁，使得并发性相比一般的排他锁有了很大提升，读写锁<strong>能有效提高读比写多的场景下的程序性能，比排它锁好。</strong></p>
+<p><img src="https://i.loli.net/2020/10/08/zSACrYWlkhbqZmw.png" alt="Screen Shot 2020-10-08 at 9.42.11 PM.png"></p>
+<h4 id="2）-读写状态设计"><a href="#2）-读写状态设计" class="headerlink" title="2） 读写状态设计"></a>2） 读写状态设计</h4><p><strong>如果在一个整型变量上维护多种状态，就一定需要“按位切割使用”这个变量，读写锁是将变量切分成了两个部分，高16位表示读，低16位表示写，划分方式如图所示。</strong></p>
+<p>获取写状态：<br><code>S&amp;0x0000FFFF</code>：将高16位全部抹去</p>
+<p>获取读状态：<br><code>S&gt;&gt;&gt;16</code>：无符号补0，右移16位</p>
+<p>写状态加1：<br><code>S+1</code>：在tryAcquire方法里面</p>
+<p><img src="https://i.loli.net/2020/10/08/qJ5PoulbTRaOhn9.png" alt="Screen Shot 2020-10-08 at 9.42.22 PM.png"></p>
+<h4 id="3）写锁的获取与释放"><a href="#3）写锁的获取与释放" class="headerlink" title="3）写锁的获取与释放"></a>3）写锁的获取与释放</h4><p>写锁是一个支持重进入的排它锁，如果当前线程已经获取了写锁，则增加写状态。</p>
+<p>如果当前线程在获取写锁时，读锁已经被获取（读状态不为0）或者该线程不是已经获取写锁的线程，则当前线程进入等待状态。</p>
+<h4 id="4）读锁的获取与释放"><a href="#4）读锁的获取与释放" class="headerlink" title="4）读锁的获取与释放"></a>4）读锁的获取与释放</h4><p>读锁是一个支持重进入的共享锁，它能够被多个线程同时获取，在没有其他写线程访问（或者写状态为0）时，读锁总会成功的被获取，而所做的也只是（线程安全地）增加读状态。</p>
+<p>如果当前线程已经获取了读锁，则增加读状态。如果当前线程在获取读锁时，写锁已被其他线程获取，则进入等待状态。</p>
+<h4 id="5）锁降级"><a href="#5）锁降级" class="headerlink" title="5）锁降级"></a>5）锁降级</h4><p>锁降级实现方式是：<strong>先获取写入锁，然后把持住当前拥有的写锁，获取读取锁同时，最后释放写入锁。但是，从读取锁升级到写入锁是不可能的。</strong></p>
+<h5 id="锁降级中读锁的获取是否必要呢？"><a href="#锁降级中读锁的获取是否必要呢？" class="headerlink" title="锁降级中读锁的获取是否必要呢？"></a>锁降级中读锁的获取是否必要呢？</h5><p>答案是必要的。</p>
+<p>主要原因是保证数据的可见性，如果当前线程不获取读锁而是直接释放写锁，假设此刻另一个线程（记作线程T）获取了写锁并修改了数据，则当前线程无法感知线程T的数据更新。</p>
+<p>如果当前线程获取读锁，即遵循锁降级的步骤，则线程T将会被阻塞，直到当前线程使用数据并释放读锁之后，线程T才能获取写锁进行数据更新。</p>
+<h3 id="5-Condition接口（Lock系列功能）"><a href="#5-Condition接口（Lock系列功能）" class="headerlink" title="5. Condition接口（Lock系列功能）"></a>5. Condition接口（Lock系列功能）</h3><h4 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h4><ul>
+<li>Condition就是用来实现类似（Synchronized）Object.wait和Object.notify 对应功能的。</li>
+<li>Condition定义了等待/通知两种类型的方法，当前线程调用这些方法时，需要提前获取到Condition对象关联的锁，Condition是依赖Lock对象的。</li>
+<li>调用<strong>await()**方法后，当前线程会释放锁并在此等待，而其他线程调用Condition对象的</strong>signal()**方法，通知当前线程后，当前线程才从await()方法返回，并且在返回前已经获取了锁。</li>
+</ul>
+<p><em>有界队列是一种特殊的队列，当队列为空时，队列的获取操作将会阻塞获取线程，直到队列中有新增元素，当队列已满时，队列的插入操作将会阻塞插入线程，直到队列出现空位。</em></p>
+<h4 id="2-等待队列"><a href="#2-等待队列" class="headerlink" title="2. 等待队列"></a>2. 等待队列</h4><p>等待队列是一个FIFO的队列，在队列中的每个节点都包含了一个线程引用，该线程就是在Condition对象上等待的线程，如果一个线程调用了Condition.await()方法，那么该线程将会释放锁、构造成节点将从尾部加入等待队列。进入等待状态 。</p>
+<p><img src="https://i.loli.net/2020/10/08/xcBGqyHf4u2C7rL.png" alt="Screen Shot 2020-10-08 at 9.42.36 PM.png"></p>
+<p>在Object的监视器模型上，一个对象拥有一个同步队列和等待队列，而同步器拥有一个同步队列和多个等待队列。</p>
+<p><img src="https://i.loli.net/2020/10/08/L8YHvpzQBZG4qu3.png" alt="Screen Shot 2020-10-08 at 9.42.51 PM.png"></p>
+<h4 id="3-等待"><a href="#3-等待" class="headerlink" title="3. 等待"></a>3. 等待</h4><p>调用Condition的await()方法，会使当前线程进入等待队列并释放锁，同时线程状态变为等待状态。相当于同步队列的首节点（获取了锁的节点）移动到Condition的等待队列中。</p>
+<p>调用该方法的线程成功获取了锁的线程，也就是同步队列中的首节点，该方法会将当前线程构造成节点并加入等待队列中，然后释放同步状态，唤醒同步队列中的后继节点，然后当前线程会进入等待状态。</p>
+<p><img src="https://i.loli.net/2020/10/08/NSwZOmJL1jMGbzd.png" alt="Screen Shot 2020-10-08 at 9.43.00 PM.png"></p>
+<h4 id="4-通知"><a href="#4-通知" class="headerlink" title="4. 通知"></a>4. 通知</h4><p>调用Condition的signal()方法，将会唤醒在等待队列中等待时间最长的节点（首节点），在唤醒节点之前，会将节点移到同步队列中。<br>调用该方法的前置条件是当前线程必须获取了锁，接着获取等待队列的首节点，将其移动到同步队列并使用LockSupport唤醒节点中的线程。</p>
+<p><img src="https://i.loli.net/2020/10/08/XH5NyjeLRapYGFW.png" alt="Screen Shot 2020-10-08 at 9.43.10 PM.png"></p>
+<p><strong>LockSupport定义了一组park开头的方法阻塞当前线程，unpark方法唤醒一个被阻塞的线程。</strong></p>
+<h3 id="4-乐观锁和悲观锁"><a href="#4-乐观锁和悲观锁" class="headerlink" title="4. 乐观锁和悲观锁"></a>4. 乐观锁和悲观锁</h3><h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>乐观锁<strong>认为读多写少，遇到并发写的可能性低，</strong>每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据。</p>
+<p><strong>在写时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复读-比较-写的操作。</strong></p>
+<p><strong>乐观锁基本都是通过CAS操作实现的</strong>，CAS是一种更新的原子操作，比较当前值跟传入值是否一样，一样则更新，否则失败。</p>
+<h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p>悲观锁是就是悲观思想，即<strong>认为写多，遇到并发写的可能性高，</strong>每次去拿数据的时候都认为别人会修改，所以<strong>每次在读写数据的时候都会上锁</strong>，这样别人想读写这个数据就会阻塞直到拿到锁。</p>
+<p><strong>Synchronized是悲观锁，AQS框架下的锁则是先尝试cas操作乐观锁去获取锁，获取不到锁，就会转换为悲观锁，如ReentrantLock。</strong></p>
+<h3 id="5-共享锁和独占锁"><a href="#5-共享锁和独占锁" class="headerlink" title="5. 共享锁和独占锁"></a>5. 共享锁和独占锁</h3><h4 id="独占锁"><a href="#独占锁" class="headerlink" title="独占锁"></a>独占锁</h4><ul>
+<li>独占锁模式下，每次只能有一个线程能持有锁，ReentrantLock就是以独占方式实现的互斥锁。</li>
+<li>独占锁是一种悲观保守的加锁策略，它避免了读/读冲突。</li>
+</ul>
+<h4 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h4><ul>
+<li>共享锁允许多个线程同时获取锁，并发访问共享资源，如：ReadWriteLock。它允许一个资源可以被多个读操作访问，或者被一个 写操作访问，但两者不能同时进行。</li>
+<li>共享锁则是一种乐观锁，它放宽了加锁策略，允许多个执行读操作的线程同时访问共享资源。</li>
+</ul>
+<h3 id="6-自旋锁"><a href="#6-自旋锁" class="headerlink" title="6. 自旋锁"></a>6. 自旋锁</h3><blockquote>
+<p>只适用于共享数据的锁定状态很短的场景。</p>
+</blockquote>
+<ul>
+<li>如果持有锁的线程能在很短时间内释放锁资源</li>
+<li>等待竞争锁的线程就不需要进入阻塞挂起状态，只需要等一等（自旋）</li>
+<li>等持有锁的线程释放锁后即可立即获取锁，这样就避免用户线程和内核的切换的消耗。</li>
+</ul>
+<p><strong>但是线程自旋是需要消耗cup的，所以需要设定一个自旋等待的最大时间。</strong></p>
+<p><strong>自旋锁可以尽可能的减少线程的阻塞，但是如果锁的竞争激烈，则自旋锁会消耗大量资源。</strong></p>
+<h3 id="7-锁优化"><a href="#7-锁优化" class="headerlink" title="7. 锁优化"></a>7. 锁优化</h3><p><strong>1）减少锁持有时间</strong></p>
+<p>只在有线程安全要求的程序上加锁。</p>
+<p><strong>2）减小锁粒度</strong></p>
+<p>将大对象（这个对象可能会被很多线程访问），拆成小对象，大大增加并行度，降低锁竞争。<strong>降低锁的竞争，偏向锁，轻量级锁成功率才会提高，典型的减小锁粒度的案例就是ConcurrentHashMap。</strong></p>
+<p><strong>3）锁分离</strong></p>
+<p>最常见的锁分离就是读写锁ReadWriteLock，根据功能进行分离成读锁和写锁，这样读读不互斥，读写互斥，写写互斥，即保证了线程安全，又提高了性能。</p>
+<p><strong>4）锁粗化</strong></p>
+<p>如果对同一个锁不停的进行请求、同步和释放，其本身也会消耗系统宝贵的资源，反而不利于性能的优化 ，所以粗化这类锁的请求释放过程，<strong>把加锁的范围扩展（粗化）到整个操作序列的外部。</strong></p>
+<p><strong>5）锁消除</strong></p>
+<p>在即时编译器时，如果发现不可能被共享的对象，则可以消除这些对象的锁操作。</p>
+<h3 id="8-队列同步器AQS（构建锁的同步组件的框架）"><a href="#8-队列同步器AQS（构建锁的同步组件的框架）" class="headerlink" title="8. 队列同步器AQS（构建锁的同步组件的框架）"></a>8. 队列同步器AQS（构建锁的同步组件的框架）</h3><h4 id="1）简介"><a href="#1）简介" class="headerlink" title="1）简介"></a>1）简介</h4><p>队列同步器 AbstractQueuedSynchronizer（简称同步器）是锁和其他同步组件的基础框架，内部<strong>使用了一个 int 类型的成员变量来表示同步状态，还使用了一个 FIFO 队列来管理线程的排队工作。</strong></p>
+<p>同步器提供了3个方法来修改和访问同步状态：</p>
+<ul>
+<li>getState()：获取当前同步状态</li>
+<li>setState(int newState)：设置当前同步状态</li>
+<li>compareAndSetState(int expect, int update)：使用CAS设置当前状态，该方法能保证操作的原子性。</li>
+</ul>
+<p><img src="https://i.loli.net/2020/10/08/DmpfUX3MvtjcilE.png" alt="Screen Shot 2020-10-08 at 9.43.46 PM.png"></p>
+<h4 id="2）同步队列"><a href="#2）同步队列" class="headerlink" title="2）同步队列"></a>2）同步队列</h4><ul>
+<li>同步器内部通过 FIFO 队列（双向链表）来管理那些获取同步状态失败的线程。</li>
+<li>当线程获取同步状态失败后，会将当前线程以及一些状态信息构造成一个节点（Node）添加到队列的尾部，同时阻塞该线程。<strong>这个添加过程必须是线程安全的，通过CAS 的方法添加节点。</strong></li>
+<li>当同步状态被释放后，会把后继节点的线程唤醒并尝试获取同步状态。</li>
+</ul>
+<p><img src="https://i.loli.net/2020/10/08/l7CxMqLwTtjp2og.png" alt="Screen Shot 2020-10-08 at 9.44.01 PM.png"></p>
+<h4 id="3）独占式获取与释放同步状态"><a href="#3）独占式获取与释放同步状态" class="headerlink" title="3）独占式获取与释放同步状态"></a>3）独占式获取与释放同步状态</h4><h5 id="独占式获取同步状态"><a href="#独占式获取同步状态" class="headerlink" title="独占式获取同步状态"></a>独占式获取同步状态</h5><p>调用同步器的 <code>acquire(int arg)</code> 方法可以获取同步状态，该方法不响应中断操作。也就是说当线程获取同步状态失败后会加入到同步队列中，如果此时对线程进行中断操作，线程不会从同步队列中移出。</p>
+<p>在获取同步状态时，同步器维护了一个同步队列，获取状态失败的线程都会被构建成节点加入到队列中并进行自旋；<strong>移出队列的条件是前驱节点为头节点且成功获取了同步状态。</strong></p>
+<h5 id="独占式释放同步状态"><a href="#独占式释放同步状态" class="headerlink" title="独占式释放同步状态"></a>独占式释放同步状态</h5><p>线程获取同步状态成功并执行完相关逻辑后就要释放同步状态，后继节点就可以继续获取同步状态，调用同步器的 <code>release(int arg)</code> 方法可以释放同步状态，唤醒后继节点的线程。</p>
+<h4 id="4）共享式获取与释放同步状态"><a href="#4）共享式获取与释放同步状态" class="headerlink" title="4）共享式获取与释放同步状态"></a>4）共享式获取与释放同步状态</h4><p>共享式与独占式最大的区别在于：同一个时刻能否允许多个线程同时获取到同步状态。</p>
+<h5 id="共享式获取同步状态"><a href="#共享式获取同步状态" class="headerlink" title="共享式获取同步状态"></a>共享式获取同步状态</h5><p>调用同步器的 <code>acquireShared(int arg)</code> 方法可以获取同步状态。</p>
+<h5 id="共享式释放同步状态"><a href="#共享式释放同步状态" class="headerlink" title="共享式释放同步状态"></a>共享式释放同步状态</h5><p>和独占式一样，共享式也需要释放同步状态，通过调用同步器的 <code>releaseShared(int arg)</code> 方法释放同步状态。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Daniel</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://danie10ne.github.io/2020/10/08/java-bing-fa/java-suo/">https://danie10ne.github.io/2020/10/08/java-bing-fa/java-suo/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Daniel</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                                    <span class="chip bg-color">Java并发</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/10/08/java-bing-fa/yi-kui-xian-cheng-jiu-jing/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/36.jpg" class="responsive-img" alt="一窥线程究竟">
+                        
+                        <span class="card-title">一窥线程究竟</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一窥线程究竟一、 什么是线程？什么是进程？二者有什么区别？二者有什么联系？1. 什么是进程？
+进程包括进程控制块PCB和用户地址空间，所有与进程有关的资源都存放在进程控制块PCB中，包含描述信息、控制信息、资源信息、CPU现场等。
+进程是抢
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                        <span class="chip bg-color">Java并发</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/08/java-bing-fa/xian-cheng-shang-xia-wen-qie-huan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/79.jpg" class="responsive-img" alt="线程上下文切换">
+                        
+                        <span class="card-title">线程上下文切换</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            线程上下文切换1. 什么是上下文切换？CPU通过时间片轮转的方式，当前任务执行一个时间片，然后保存当前任务状态，执行下一个任务，任务从保存到再加载的过程就叫做上下文切换。
+上下文切换是内核在 CPU 上对进程（包括线程）进行切换，上下文切换
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                        <span class="chip bg-color">Java并发</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Daniel</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/danie10ne" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:wanweixiang2017@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2227317215" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2227317215" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
