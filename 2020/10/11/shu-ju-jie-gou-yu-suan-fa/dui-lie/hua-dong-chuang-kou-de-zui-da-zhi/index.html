@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="冒泡排序, Danielone">
+    <meta name="keywords" content="滑动窗口的最大值, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>冒泡排序 | Danielone</title>
+    <title>滑动窗口的最大值 | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/94.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">冒泡排序</h1>
+                    <h1 class="description center-align post-title">滑动窗口的最大值</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                                <span class="chip bg-color">排序</span>
+                            <a href="/tags/%E5%89%91%E6%8C%87offer/">
+                                <span class="chip bg-color">剑指offer</span>
                             </a>
                         
                     </div>
@@ -411,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-05
+                    2020-10-11
                 </div>
                 
 
@@ -427,44 +427,62 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><h2 id="1-什么是冒泡排序？"><a href="#1-什么是冒泡排序？" class="headerlink" title="1. 什么是冒泡排序？"></a>1. 什么是冒泡排序？</h2><p>冒泡算法顾名思义就是重复地遍历数组中的元素，每次比较两个元素，如果顺序错误就交换位置，接着再比较下一对相邻元素直到最后一个元素确定为最值，接着再重新遍历比较除了有序元素的数组元素。</p>
-<ul>
-<li><strong>从数组末尾位置开始确定排好序的元素，一般为升序，即每次确定最大值放在末位。</strong></li>
-<li>关注点是最大值</li>
-</ul>
-<h2 id="2-代码思路"><a href="#2-代码思路" class="headerlink" title="2. 代码思路"></a>2. 代码思路</h2><ol>
-<li>鲁棒性检查，如果数组为空或者长度小于2直接返回</li>
-<li>因为是从最末位位置开始确定元素，所以从<strong>“末位-&gt;0”</strong>先固定n-1、n-2、n-3、…0位置的元素，固定好后末位依次减1</li>
-<li>在<strong>“末位-0”</strong>范围内，从0位置开始遍历数组并比较相邻的元素。如果第一个比第二个大（升序），就交换他们两个</li>
-</ol>
-<h2 id="3-时间复杂度-amp-空间复杂度"><a href="#3-时间复杂度-amp-空间复杂度" class="headerlink" title="3. 时间复杂度 &amp; 空间复杂度"></a>3. 时间复杂度 &amp; 空间复杂度</h2><ul>
-<li>最坏时间复杂度：O(N^2)</li>
-<li>最优时间复杂度：O(N)</li>
-<li>平均时间复杂度：O(N^2)</li>
-<li>最坏空间复杂度：总共O(N)，额外空间复杂度O(1)</li>
-</ul>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BubbleSort</span> <span class="token punctuation">{</span>
-        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//鲁棒性判断</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>arr <span class="token operator">==</span> null <span class="token operator">||</span> arr<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+                <h1 id="滑动窗口的最大值Sliding-Window-Maximum"><a href="#滑动窗口的最大值Sliding-Window-Maximum" class="headerlink" title="滑动窗口的最大值Sliding Window Maximum"></a>滑动窗口的最大值<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sliding-window-maximum/">Sliding Window Maximum</a></h1><p>给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。</p>
+<p>示例:</p>
+<pre><code>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7] 
+解释: 
 
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> end <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> end <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span> end<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> end<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                    <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                        <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> i<span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
+  滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+</code></pre>
+<p>提示：</p>
+<p>你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> main<span class="token punctuation">.</span>java<span class="token punctuation">.</span>com<span class="token punctuation">.</span>algorithm<span class="token punctuation">.</span>space<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>LinkedList<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 1. 滑动窗口产生的结果数组大小为 nums.length - k + 1
+ * 2. 创建一个双端队列，并维护其单调递减性，来实现符合能求最大值的滑动窗口，注意这里队列中的元素是数组的索引
+ * 3. 然后判断滑动窗口的队首是否过期，每一轮遍历过期的索引为i-k，当队首索引等于i-k说明队首已经过期
+ * 4. 最后判断遍历的位置是否已经开始可以计入最大值，当遍历位置从k-1开始记录窗口最大值
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">maxSlidingWindow</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">maxSlidingWindow</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> k <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> res <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>nums<span class="token punctuation">.</span>length <span class="token operator">-</span> k <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//创建一个长度为k的双端队列作为滑动窗口</span>
+        LinkedList<span class="token operator">&lt;</span>Integer<span class="token operator">></span> queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//维护滑动窗口，保持其是单调递减的</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>queue<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>queue<span class="token punctuation">.</span><span class="token function">peekLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                queue<span class="token punctuation">.</span><span class="token function">pollLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            queue<span class="token punctuation">.</span><span class="token function">offerLast</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//判断滑动窗口的头节点有没有过期，</span>
+            <span class="token comment" spellcheck="true">//当窗口队首等于当前遍历元素的索引与窗口大小的差值说明，窗口队首已过期</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>queue<span class="token punctuation">.</span><span class="token function">peekFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">(</span>i<span class="token operator">-</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                queue<span class="token punctuation">.</span><span class="token function">pollFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">//判断是否已经遍历到可以取最大值的位置，从i >= w-1开始</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">>=</span> k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                res<span class="token punctuation">[</span>index<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>queue<span class="token punctuation">.</span><span class="token function">peekFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-
-        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -508,7 +526,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/bubblesort/">https://danie10ne.github.io/2020/10/05/shu-ju-jie-gou-yu-suan-fa/pai-xu/bubblesort/</a>
+                    <a href="https://danie10ne.github.io/2020/10/11/shu-ju-jie-gou-yu-suan-fa/dui-lie/hua-dong-chuang-kou-de-zui-da-zhi/">https://danie10ne.github.io/2020/10/11/shu-ju-jie-gou-yu-suan-fa/dui-lie/hua-dong-chuang-kou-de-zui-da-zhi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -546,8 +564,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                                    <span class="chip bg-color">排序</span>
+                                <a href="/tags/%E5%89%91%E6%8C%87offer/">
+                                    <span class="chip bg-color">剑指offer</span>
                                 </a>
                             
                         </div>
@@ -593,77 +611,28 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/06/java-ji-chu/xu-lie-hua/">
+                <a href="/2020/10/11/shu-ju-jie-gou-yu-suan-fa/bfs/bfs1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/79.jpg" class="responsive-img" alt="什么时候需要将对象序列化？">
+                        <img src="/medias/featureimages/93.jpg" class="responsive-img" alt="I. 从上到下打印二叉树">
                         
-                        <span class="card-title">什么时候需要将对象序列化？</span>
+                        <span class="card-title">I. 从上到下打印二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            什么时候需要将对象序列化？1. 概念序列化：将Java对象转换成字节流的过程
-反序列化：将字节流转换成Java对象的过程
-为了保障在JVM停止运行后，能够保存对象的状态信息，即成员变量信息，持久化指定的对象，并在将来重新读取被保障的对象。
-
+                            剑指 Offer 32 - I. 从上到下打印二叉树从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
+例如:给定二叉树: [3,9,20,null,null,15,7],
+3
+   /   9  20    /     
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-11
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Java基础</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/10/05/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/jian-zhi-offer11-xuan-zhuan-shu-zu-de-zui-xiao-shu-zi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/56.jpg" class="responsive-img" alt="剑指offer11-旋转数组的最小数字">
-                        
-                        <span class="card-title">剑指offer11-旋转数组的最小数字</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            剑指offer11-旋转数组的最小数字Find Minimum in Rotated Sorted Array IISuppose an array sorted in ascending order is rotated at some 
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -681,6 +650,64 @@
                     
                     <a href="/tags/%E5%89%91%E6%8C%87offer/">
                         <span class="chip bg-color">剑指offer</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/09/shu-ju-jie-gou-yu-suan-fa/zhan/you-liang-ge-zhan-zu-cheng-de-dui-lie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/58.jpg" class="responsive-img" alt="由两个栈组成的队列">
+                        
+                        <span class="card-title">由两个栈组成的队列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            由两个栈组成的队列题目描述用两个栈实现队列，支持队列的基本操作。
+输入描述:第一行输入一个整数N，表示对队列进行的操作总数。
+
+下面N行每行输入一个字符串S，表示操作的种类。
+
+如果S为"add"，则后面还有一个整数X表示向队列尾部加入整数
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A0%88/">
+                        <span class="chip bg-color">栈</span>
                     </a>
                     
                 </div>
