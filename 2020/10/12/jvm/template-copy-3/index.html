@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="I. 二叉搜索树的最近公共祖先, Danielone">
+    <meta name="keywords" content="Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>I. 二叉搜索树的最近公共祖先 | Danielone</title>
+    <title>Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/45.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">I. 二叉搜索树的最近公共祖先</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                                <span class="chip bg-color">剑指offer</span>
+                            <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+                                <span class="chip bg-color">Java虚拟机</span>
                             </a>
                         
                     </div>
@@ -398,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -427,40 +427,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="剑指-Offer-68-I-二叉搜索树的最近公共祖先"><a href="#剑指-Offer-68-I-二叉搜索树的最近公共祖先" class="headerlink" title="剑指 Offer 68 - I. 二叉搜索树的最近公共祖先"></a>剑指 Offer 68 - I. 二叉搜索树的最近公共祖先</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
-<p>例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]<br><img src="https://i.loli.net/2020/10/12/x3JzhkaFYmPbGru.png" alt="Screen Shot 2020-10-12 at 9.14.05 PM.png"></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol>
-<li><strong>最近公共祖先，通常表现为： p、q 节点不在最近公共祖先的同一个子树上</strong></li>
-<li>树是二叉搜索树，所有的节点值唯一，则可以根据 p、q 节点不在最近公共祖先的同一个子树上的特征，进行循环遍历，找到结果。</li>
-</ol>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> main<span class="token punctuation">.</span>java<span class="token punctuation">.</span>com<span class="token punctuation">.</span>algorithm<span class="token punctuation">.</span>space<span class="token punctuation">.</span>solution<span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution68I</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TreeNode</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-        TreeNode left<span class="token punctuation">;</span>
-        TreeNode right<span class="token punctuation">;</span>
-        <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span> val <span class="token operator">=</span> x<span class="token punctuation">;</span> <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> TreeNode <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">,</span> TreeNode p<span class="token punctuation">,</span> TreeNode q<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//如果根节点都小于p、q说明p、q都在root的右子树上</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> p<span class="token punctuation">.</span>val <span class="token operator">&amp;&amp;</span> root<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> q<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                root <span class="token operator">=</span> root<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">//如果根节点都大于p、q说明p、q都在root的左子树上</span>
-            <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>val <span class="token operator">></span> p<span class="token punctuation">.</span>val <span class="token operator">&amp;&amp;</span> root<span class="token punctuation">.</span>val <span class="token operator">></span> q<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                root <span class="token operator">=</span> root<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">//包含：root.val == p.val，root.val == q.val，root.val > p.val &amp;&amp; root.val &lt; q.val 或者 root.val &lt; p.val &amp;&amp; root.val > q.val，</span>
-                <span class="token keyword">return</span> root<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<script>
+                <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -503,7 +470,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/12/shu-ju-jie-gou-yu-suan-fa/er-cha-shu/er-cha-shu-de-zui-jin-gong-gong-zu-xian-i/">https://danie10ne.github.io/2020/10/12/shu-ju-jie-gou-yu-suan-fa/er-cha-shu/er-cha-shu-de-zui-jin-gong-gong-zu-xian-i/</a>
+                    <a href="https://danie10ne.github.io/2020/10/12/jvm/template-copy-3/">https://danie10ne.github.io/2020/10/12/jvm/template-copy-3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -541,8 +508,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                                    <span class="chip bg-color">剑指offer</span>
+                                <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+                                    <span class="chip bg-color">Java虚拟机</span>
                                 </a>
                             
                         </div>
@@ -588,7 +555,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/12/jvm/template-copy/">
+                <a href="/2020/10/12/jvm/template-copy-2/">
                     <div class="card-image">
                         
                         
@@ -640,20 +607,22 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/12/shu-ju-jie-gou-yu-suan-fa/er-cha-shu/er-cha-shu-de-zui-jin-gong-gong-zu-xian-ii/">
+                <a href="/2020/10/12/jvm/template-copy-4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/45.jpg" class="responsive-img" alt="I. 二叉搜索树的最近公共祖先">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">I. 二叉搜索树的最近公共祖先</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            剑指 Offer 68 - II. 二叉树的最近公共祖先题目描述给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
-   百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 
+                            
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return
                         
                     </div>
                     <div class="publish-info">
@@ -664,8 +633,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -675,8 +644,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                        <span class="chip bg-color">剑指offer</span>
+                    <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+                        <span class="chip bg-color">Java虚拟机</span>
                     </a>
                     
                 </div>
