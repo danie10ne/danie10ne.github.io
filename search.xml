@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>剑指offer64.计算1+...+n</title>
+      <link href="2020/10/15/shu-ju-jie-gou-yu-suan-fa/di-gui-dong-tai-gui-hua/ji-suan-1...n/"/>
+      <url>2020/10/15/shu-ju-jie-gou-yu-suan-fa/di-gui-dong-tai-gui-hua/ji-suan-1...n/</url>
+      
+        <content type="html"><![CDATA[<h1 id="剑指-Offer-64-求1-2-…-n"><a href="#剑指-Offer-64-求1-2-…-n" class="headerlink" title="剑指 Offer 64. 求1+2+…+n"></a>剑指 Offer 64. 求1+2+…+n</h1><p>求 1+2+…+n ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。</p><pre><code>示例 1：输入: n = 3输出: 6示例 2：输入: n = 9输出: 45</code></pre><p>限制：</p><p>1 &lt;= n &lt;= 10000</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul><li>递归非方式：递归从上到下计算</li><li>动态规划：以空间换时间，从下到上计算</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>algorithm<span class="token punctuation">.</span>space<span class="token punctuation">.</span>solution<span class="token punctuation">;</span><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution64</span> <span class="token punctuation">{</span>    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">sumNums</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token keyword">return</span> n <span class="token operator">+</span> <span class="token function">sumNums</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">sumNums2</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>            sum <span class="token operator">+=</span> i<span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token keyword">return</span> sum<span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>斐波那契数列</title>
       <link href="2020/10/14/shu-ju-jie-gou-yu-suan-fa/di-gui-dong-tai-gui-hua/fei-bo-na-qi-shu-lie/"/>
       <url>2020/10/14/shu-ju-jie-gou-yu-suan-fa/di-gui-dong-tai-gui-hua/fei-bo-na-qi-shu-lie/</url>
