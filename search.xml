@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>在排序数组中查找数字 I</title>
+      <link href="2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/"/>
+      <url>2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/</url>
+      
+        <content type="html"><![CDATA[<h1 id="排序数组中查找数字-I"><a href="#排序数组中查找数字-I" class="headerlink" title="排序数组中查找数字 I"></a>排序数组中查找数字 I</h1><p>统计一个数字在排序数组中出现的次数。</p><pre><code>示例 1:输入: nums = [5,7,7,8,8,10], target = 8输出: 2示例 2:输入: nums = [5,7,7,8,8,10], target = 6输出: 0限制：0 &lt;= 数组长度 &lt;= 50000</code></pre><h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution53</span> <span class="token punctuation">{</span>    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">//target的右边界 - （target-1）的右边界 = target的个数</span>        <span class="token keyword">return</span> <span class="token function">findborder</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>target<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">findborder</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> target <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>      <span class="token comment" spellcheck="true">//计算target的右边界的索引</span>    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">findborder</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span><span class="token punctuation">{</span>        <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> r <span class="token operator">=</span> nums<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>        <span class="token keyword">while</span><span class="token punctuation">(</span>l <span class="token operator">&lt;=</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>            <span class="token keyword">int</span> mid <span class="token operator">=</span> l<span class="token operator">+</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> target <span class="token punctuation">)</span><span class="token punctuation">{</span>                l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>                r <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span>        <span class="token punctuation">}</span>        <span class="token keyword">return</span> l<span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul><li>标签：数组、二分查找</li><li>整体思路：<ul><li>因为数组本身是有序的，所以利用二分查找可以降低时间复杂度，但是因为数组中的数字存在重复，所以找到 target 在数组中对应的左右边界非常重要</li><li>容易想到的方式就是分别用二分查找的方式去查找 target 在数组的左边界和右边界，然后将右边界减左边界即可得到结果</li><li>分别查找 target 左边界和右边界的逻辑会有差异，这里可以取巧，变成分别查找 target-1 的右边界和 target 的右边界，结果是一样的，但是代码可以进行复用了</li></ul></li><li>复杂度：<ul><li>时间复杂度：O(logn)O(logn)。二分查找的时间复杂度是O(logn)O(logn)</li><li>空间复杂度：O(1)O(1)。只需要保存左右边界和中间值即可</li></ul></li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>LRU缓存机制</title>
       <link href="2020/10/18/shu-ju-jie-gou-yu-suan-fa/dui-lie/lru-huan-cun-ji-zhi/"/>
       <url>2020/10/18/shu-ju-jie-gou-yu-suan-fa/dui-lie/lru-huan-cun-ji-zhi/</url>

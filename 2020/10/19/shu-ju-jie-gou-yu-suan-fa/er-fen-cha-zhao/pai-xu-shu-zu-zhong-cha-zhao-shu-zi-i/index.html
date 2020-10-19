@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LRU缓存机制, Danielone">
+    <meta name="keywords" content="在排序数组中查找数字 I, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LRU缓存机制 | Danielone</title>
+    <title>在排序数组中查找数字 I | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/52.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/94.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LRU缓存机制</h1>
+                    <h1 class="description center-align post-title">在排序数组中查找数字 I</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/leetcode/">
-                                <span class="chip bg-color">leetcode</span>
+                            <a href="/tags/%E5%89%91%E6%8C%87offer/">
+                                <span class="chip bg-color">剑指offer</span>
                             </a>
                         
                     </div>
@@ -411,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-18
+                    2020-10-19
                 </div>
                 
 
@@ -427,78 +427,55 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="LRU缓存机制"><a href="#LRU缓存机制" class="headerlink" title="LRU缓存机制"></a>LRU缓存机制</h1><p>运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。</p>
-<p>获取数据 get(key) - 如果关键字 (key) 存在于缓存中，则获取关键字的值（总是正数），否则返回 -1。<br>写入数据 put(key, value) - 如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字/值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p>
-<p>进阶:</p>
-<p>你是否可以在 O(1) 时间复杂度内完成这两种操作？</p>
-<p>示例:</p>
-<pre><code>LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );
+                <h1 id="排序数组中查找数字-I"><a href="#排序数组中查找数字-I" class="headerlink" title="排序数组中查找数字 I"></a>排序数组中查找数字 I</h1><p>统计一个数字在排序数组中出现的次数。</p>
+<pre><code>
+示例 1:
 
-cache.put(1, 1);
-cache.put(2, 2);
-cache.get(1);       // 返回  1
-cache.put(3, 3);    // 该操作会使得关键字 2 作废
-cache.get(2);       // 返回 -1 (未找到)
-cache.put(4, 4);    // 该操作会使得关键字 1 作废
-cache.get(1);       // 返回 -1 (未找到)
-cache.get(3);       // 返回  3
-cache.get(4);       // 返回  4</code></pre>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>algorithm<span class="token punctuation">.</span>space<span class="token punctuation">.</span>solution<span class="token punctuation">;</span>
+输入: nums = [5,7,7,8,8,10], target = 8
+输出: 2
+示例 2:
 
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>HashMap<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>LinkedList<span class="token punctuation">;</span>
+输入: nums = [5,7,7,8,8,10], target = 6
+输出: 0
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LRUCache</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> capacity<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> HashMap<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span> Node<span class="token operator">></span> map<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> LinkedList<span class="token operator">&lt;</span>Node<span class="token operator">></span> cache<span class="token punctuation">;</span>
-    <span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
-        <span class="token keyword">public</span> <span class="token keyword">int</span> key<span class="token punctuation">,</span> val<span class="token punctuation">;</span>
-        <span class="token keyword">public</span> Node next<span class="token punctuation">,</span> prev<span class="token punctuation">;</span>
-        <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>key <span class="token operator">=</span> k<span class="token punctuation">;</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> v<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token function">LRUCache</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>capacity <span class="token operator">=</span> capacity<span class="token punctuation">;</span>
-        map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        cache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+限制：
+
+0 &lt;= 数组长度 &lt;= 50000</code></pre>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution53</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//target的右边界 - （target-1）的右边界 = target的个数</span>
+        <span class="token keyword">return</span> <span class="token function">findborder</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>target<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">findborder</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> target <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//如果已经不存在 则返回-1</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>map<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//如果已经存在</span>
-        <span class="token keyword">int</span> value <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">.</span>val<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//更新节点的位置</span>
-        <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> value<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Node n <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//如果已经存在，则移除链表中为key的节点，重新加入到链表首部</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            cache<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            cache<span class="token punctuation">.</span><span class="token function">addFirst</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//更新map中对应节点的数据</span>
-            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//如果链表已满，则移除链表最后一个节点</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>cache<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> capacity<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                Node last <span class="token operator">=</span> cache<span class="token punctuation">.</span><span class="token function">removeLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                map<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>last<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//计算target的右边界的索引</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">findborder</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> r <span class="token operator">=</span> nums<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>l <span class="token operator">&lt;=</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">int</span> mid <span class="token operator">=</span> l<span class="token operator">+</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> target <span class="token punctuation">)</span><span class="token punctuation">{</span>
+                l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+                r <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">//添加到链表首部</span>
-            cache<span class="token punctuation">.</span><span class="token function">addFirst</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//更新map</span>
-            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> l<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>标签：数组、二分查找</li>
+<li>整体思路：<ul>
+<li>因为数组本身是有序的，所以利用二分查找可以降低时间复杂度，但是因为数组中的数字存在重复，所以找到 target 在数组中对应的左右边界非常重要</li>
+<li>容易想到的方式就是分别用二分查找的方式去查找 target 在数组的左边界和右边界，然后将右边界减左边界即可得到结果</li>
+<li>分别查找 target 左边界和右边界的逻辑会有差异，这里可以取巧，变成分别查找 target-1 的右边界和 target 的右边界，结果是一样的，但是代码可以进行复用了</li>
+</ul>
+</li>
+<li>复杂度：<ul>
+<li>时间复杂度：O(logn)O(logn)。二分查找的时间复杂度是O(logn)O(logn)</li>
+<li>空间复杂度：O(1)O(1)。只需要保存左右边界和中间值即可</li>
+</ul>
+</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -542,7 +519,7 @@ cache.get(4);       // 返回  4</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/18/shu-ju-jie-gou-yu-suan-fa/dui-lie/lru-huan-cun-ji-zhi/">https://danie10ne.github.io/2020/10/18/shu-ju-jie-gou-yu-suan-fa/dui-lie/lru-huan-cun-ji-zhi/</a>
+                    <a href="https://danie10ne.github.io/2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/">https://danie10ne.github.io/2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -580,8 +557,8 @@ cache.get(4);       // 返回  4</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
+                                <a href="/tags/%E5%89%91%E6%8C%87offer/">
+                                    <span class="chip bg-color">剑指offer</span>
                                 </a>
                             
                         </div>
@@ -623,9 +600,10 @@ cache.get(4);       // 返回  4</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/">
                     <div class="card-image">
@@ -651,9 +629,9 @@ cache.get(4);       // 返回  4</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -666,6 +644,7 @@ cache.get(4);       // 返回  4</code></pre>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -684,28 +663,20 @@ cache.get(4);       // 返回  4</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/18/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/ji-suan-fu-dian-shu-de-ping-fang-gen/">
+                <a href="/2020/10/18/shu-ju-jie-gou-yu-suan-fa/dui-lie/lru-huan-cun-ji-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/56.jpg" class="responsive-img" alt="计算浮点数的平方根">
+                        <img src="/medias/featureimages/52.jpg" class="responsive-img" alt="LRU缓存机制">
                         
-                        <span class="card-title">计算浮点数的平方根</span>
+                        <span class="card-title">LRU缓存机制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计算浮点数的平方根实现 int sqrt(int x) 函数。
-计算并返回 x 的平方根，其中 x 是非负整数。
-由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
-示例 1:
-输入: 4
-输出: 2
-示例 2:
-
-输入: 8
-输
+                            LRU缓存机制运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
+获取数据 get(key) - 如果关键字 (key) 存在于缓存中，则获取关键字
                         
                     </div>
                     <div class="publish-info">
