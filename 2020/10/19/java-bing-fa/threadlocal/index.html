@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="在排序数组中查找数字 I, Danielone">
+    <meta name="keywords" content="ThreadLocal, Danielone">
     <meta name="description" content="Stay Hungry Stay Foolish">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>在排序数组中查找数字 I | Danielone</title>
+    <title>ThreadLocal | Danielone</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/94.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">在排序数组中查找数字 I</h1>
+                    <h1 class="description center-align post-title">ThreadLocal</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                                <span class="chip bg-color">剑指offer</span>
+                            <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                                <span class="chip bg-color">Java并发</span>
                             </a>
                         
                     </div>
@@ -398,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -427,55 +427,37 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="排序数组中查找数字-I"><a href="#排序数组中查找数字-I" class="headerlink" title="排序数组中查找数字 I"></a>排序数组中查找数字 I</h1><p>统计一个数字在排序数组中出现的次数。</p>
-<pre><code>
-示例 1:
-
-输入: nums = [5,7,7,8,8,10], target = 8
-输出: 2
-示例 2:
-
-输入: nums = [5,7,7,8,8,10], target = 6
-输出: 0
-
-
-限制：
-
-0 &lt;= 数组长度 &lt;= 50000</code></pre>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Solution53</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//target的右边界 - （target-1）的右边界 = target的个数</span>
-        <span class="token keyword">return</span> <span class="token function">findborder</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>target<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">findborder</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> target <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-      <span class="token comment" spellcheck="true">//计算target的右边界的索引</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">findborder</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> r <span class="token operator">=</span> nums<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>l <span class="token operator">&lt;=</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">int</span> mid <span class="token operator">=</span> l<span class="token operator">+</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> target <span class="token punctuation">)</span><span class="token punctuation">{</span>
-                l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
-                r <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> l<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
-<li>标签：数组、二分查找</li>
-<li>整体思路：<ul>
-<li>因为数组本身是有序的，所以利用二分查找可以降低时间复杂度，但是因为数组中的数字存在重复，所以找到 target 在数组中对应的左右边界非常重要</li>
-<li>容易想到的方式就是分别用二分查找的方式去查找 target 在数组的左边界和右边界，然后将右边界减左边界即可得到结果</li>
-<li>分别查找 target 左边界和右边界的逻辑会有差异，这里可以取巧，变成分别查找 target-1 的右边界和 target 的右边界，结果是一样的，但是代码可以进行复用了</li>
+                <h1 id="ThreadLocal线程本地变量"><a href="#ThreadLocal线程本地变量" class="headerlink" title="ThreadLocal线程本地变量"></a>ThreadLocal线程本地变量</h1><h2 id="1-ThreadLocal的本质"><a href="#1-ThreadLocal的本质" class="headerlink" title="1. ThreadLocal的本质"></a>1. ThreadLocal的本质</h2><ul>
+<li>通过使用ThreadLocal对<strong>共享变量</strong>进行包装，使得每个线程都<strong>独立地拥有</strong>这个共享变量的一个副本。</li>
+<li>由于每个线程都拥有共享变量的副本，所以随着线程数量的增大也会对增加内存空间的负担，因此在使用ThreadLocal前，需要提前衡量共享变量的空间占用情况</li>
+<li>这里所说的共享变量，需要注意不能和数据一致性共享内存混淆，共享变量指的是不同线程同时使用同一个变量用于线程本身独立使用。</li>
+<li>因 为 ThreadLocal变量 在 整 个 线 程 生 命 周 期 内 有 效 ， 所 以 可 以 方 便 地 在 一 个 线 程 关 联 的 不 同 业 务 模 块 之 间 传 递 信 息 ， 比 如 事 务 ID、 Cookie 等 上 下 文 相 关 信 息 。</li>
+</ul>
+<h2 id="2-ThreadLocal实现原理"><a href="#2-ThreadLocal实现原理" class="headerlink" title="2. ThreadLocal实现原理"></a>2. ThreadLocal实现原理</h2><p>在ThreadLocal内部定义了一个静态内部类<strong>ThreadLocalMap</strong>，key为使用了ThreadLocal的对象引用，value为对象包装的具体值，且每个线程都拥有一个ThreadLocalMap，存放该线程中所有使用了ThreadLocal包装的变量的副本。</p>
+<ul>
+<li>初始化initialValue</li>
+<li>获取变量<ul>
+<li>首先获取调用get方法的线程的对象引用</li>
+<li>把对象引用作为key获取其对应的value</li>
 </ul>
 </li>
-<li>复杂度：<ul>
-<li>时间复杂度：O(logn)O(logn)。二分查找的时间复杂度是O(logn)O(logn)</li>
-<li>空间复杂度：O(1)O(1)。只需要保存左右边界和中间值即可</li>
+<li>设置变量<ul>
+<li>首先获取调用get方法的线程的对象引用</li>
+<li>设置key对应的value</li>
 </ul>
 </li>
 </ul>
+<h2 id="3-使-用-ThreadLocal-需-要-注-意-些-什-么-？"><a href="#3-使-用-ThreadLocal-需-要-注-意-些-什-么-？" class="headerlink" title="3. 使 用 ThreadLocal 需 要 注 意 些 什 么 ？"></a>3. 使 用 ThreadLocal 需 要 注 意 些 什 么 ？</h2><p><strong>ThreadLocalMap的key是弱引用，Value是强引用。</strong></p>
+<p>这就导致了一个问题，ThreadLocal在没有外部对象强引用时，<strong>发生GC时弱引用Key会被回收，而Value不会回收</strong>。当线程没有结束，但是ThreadLocal已经被回收，则可能导致线程中存在ThreadLocalMap&lt;null, Object&gt;的键值对，<strong>造成内存泄露。</strong>（ThreadLocal被回收，ThreadLocal关联的线程共享变量还存在）。</p>
+<ul>
+<li><strong>如何避免内存泄漏</strong></li>
+</ul>
+<p>使用完线程共享变量后，显示调用ThreadLocalMap.remove方法清除线程共享变量；</p>
+<p>既然Key是弱引用，那么我们要做的事，就是在调用ThreadLocal的get()、set()方法时完成后再<strong>调用remove方法，将Entry节点和Map的引用关系移除</strong>，这样整个Entry对象在GC Roots分析后就变成不可达了，下次GC的时候就可以被回收。</p>
+<ul>
+<li><strong>被复用的线程去执行新的任务时会使用被上一个线程操作过的 value 对象，从而产生不符合预期的结果</strong></li>
+</ul>
+<p>线程池中的线程在任务执行完成后会被复用，所以在线程执行完成时，要对 ThreadLocal 进行清理（清除掉与本线程相关联的 value 对象）。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -519,7 +501,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danie10ne.github.io/2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/">https://danie10ne.github.io/2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/</a>
+                    <a href="https://danie10ne.github.io/2020/10/19/java-bing-fa/threadlocal/">https://danie10ne.github.io/2020/10/19/java-bing-fa/threadlocal/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -557,8 +539,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%89%91%E6%8C%87offer/">
-                                    <span class="chip bg-color">剑指offer</span>
+                                <a href="/tags/Java%E5%B9%B6%E5%8F%91/">
+                                    <span class="chip bg-color">Java并发</span>
                                 </a>
                             
                         </div>
@@ -600,9 +582,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/10/19/java-bing-fa/threadlocal/">
                     <div class="card-image">
@@ -622,9 +605,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -637,6 +620,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -655,25 +639,32 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/18/shu-ju-jie-gou-yu-suan-fa/dui-lie/lru-huan-cun-ji-zhi/">
+                <a href="/2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/52.jpg" class="responsive-img" alt="LRU缓存机制">
+                        <img src="/medias/featureimages/94.jpg" class="responsive-img" alt="在排序数组中查找数字 I">
                         
-                        <span class="card-title">LRU缓存机制</span>
+                        <span class="card-title">在排序数组中查找数字 I</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            LRU缓存机制运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
-获取数据 get(key) - 如果关键字 (key) 存在于缓存中，则获取关键字
+                            排序数组中查找数字 I统计一个数字在排序数组中出现的次数。
+
+示例 1:
+
+输入: nums = [5,7,7,8,8,10], target = 8
+输出: 2
+示例 2:
+
+输入: nums = [5,7,7,8,8,10], targ
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-19
                             </span>
                         <span class="publish-author">
                             
@@ -690,8 +681,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/%E5%89%91%E6%8C%87offer/">
+                        <span class="chip bg-color">剑指offer</span>
                     </a>
                     
                 </div>

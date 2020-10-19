@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>ThreadLocal</title>
+      <link href="2020/10/19/java-bing-fa/threadlocal/"/>
+      <url>2020/10/19/java-bing-fa/threadlocal/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ThreadLocal线程本地变量"><a href="#ThreadLocal线程本地变量" class="headerlink" title="ThreadLocal线程本地变量"></a>ThreadLocal线程本地变量</h1><h2 id="1-ThreadLocal的本质"><a href="#1-ThreadLocal的本质" class="headerlink" title="1. ThreadLocal的本质"></a>1. ThreadLocal的本质</h2><ul><li>通过使用ThreadLocal对<strong>共享变量</strong>进行包装，使得每个线程都<strong>独立地拥有</strong>这个共享变量的一个副本。</li><li>由于每个线程都拥有共享变量的副本，所以随着线程数量的增大也会对增加内存空间的负担，因此在使用ThreadLocal前，需要提前衡量共享变量的空间占用情况</li><li>这里所说的共享变量，需要注意不能和数据一致性共享内存混淆，共享变量指的是不同线程同时使用同一个变量用于线程本身独立使用。</li><li>因 为 ThreadLocal变量 在 整 个 线 程 生 命 周 期 内 有 效 ， 所 以 可 以 方 便 地 在 一 个 线 程 关 联 的 不 同 业 务 模 块 之 间 传 递 信 息 ， 比 如 事 务 ID、 Cookie 等 上 下 文 相 关 信 息 。</li></ul><h2 id="2-ThreadLocal实现原理"><a href="#2-ThreadLocal实现原理" class="headerlink" title="2. ThreadLocal实现原理"></a>2. ThreadLocal实现原理</h2><p>在ThreadLocal内部定义了一个静态内部类<strong>ThreadLocalMap</strong>，key为使用了ThreadLocal的对象引用，value为对象包装的具体值，且每个线程都拥有一个ThreadLocalMap，存放该线程中所有使用了ThreadLocal包装的变量的副本。</p><ul><li>初始化initialValue</li><li>获取变量<ul><li>首先获取调用get方法的线程的对象引用</li><li>把对象引用作为key获取其对应的value</li></ul></li><li>设置变量<ul><li>首先获取调用get方法的线程的对象引用</li><li>设置key对应的value</li></ul></li></ul><h2 id="3-使-用-ThreadLocal-需-要-注-意-些-什-么-？"><a href="#3-使-用-ThreadLocal-需-要-注-意-些-什-么-？" class="headerlink" title="3. 使 用 ThreadLocal 需 要 注 意 些 什 么 ？"></a>3. 使 用 ThreadLocal 需 要 注 意 些 什 么 ？</h2><p><strong>ThreadLocalMap的key是弱引用，Value是强引用。</strong></p><p>这就导致了一个问题，ThreadLocal在没有外部对象强引用时，<strong>发生GC时弱引用Key会被回收，而Value不会回收</strong>。当线程没有结束，但是ThreadLocal已经被回收，则可能导致线程中存在ThreadLocalMap&lt;null, Object&gt;的键值对，<strong>造成内存泄露。</strong>（ThreadLocal被回收，ThreadLocal关联的线程共享变量还存在）。</p><ul><li><strong>如何避免内存泄漏</strong></li></ul><p>使用完线程共享变量后，显示调用ThreadLocalMap.remove方法清除线程共享变量；</p><p>既然Key是弱引用，那么我们要做的事，就是在调用ThreadLocal的get()、set()方法时完成后再<strong>调用remove方法，将Entry节点和Map的引用关系移除</strong>，这样整个Entry对象在GC Roots分析后就变成不可达了，下次GC的时候就可以被回收。</p><ul><li><strong>被复用的线程去执行新的任务时会使用被上一个线程操作过的 value 对象，从而产生不符合预期的结果</strong></li></ul><p>线程池中的线程在任务执行完成后会被复用，所以在线程执行完成时，要对 ThreadLocal 进行清理（清除掉与本线程相关联的 value 对象）。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java并发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在排序数组中查找数字 I</title>
       <link href="2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/"/>
       <url>2020/10/19/shu-ju-jie-gou-yu-suan-fa/er-fen-cha-zhao/pai-xu-shu-zu-zhong-cha-zhao-shu-zi-i/</url>
